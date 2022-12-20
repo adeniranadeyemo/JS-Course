@@ -57,9 +57,14 @@
 
 // console.log(yearsUntilRetirement(2000, 'Cow'))
 
-function fruitProcessor(apples, oranges) {
-  const juice = `We produced ${apples} apple juice boxes and ${oranges} oranges.`
-  console.log(juice)
-  return juice
+const fruitPieces = function(fruit) {
+  return fruit * 5;
 }
 
+const fruitProcessor = function(apples, oranges) {
+  const applePieces = fruitPieces(apples);
+  const orangePieces = fruitPieces(oranges);
+
+  return `JUICE made from ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`
+}
+console.log(fruitProcessor(3, 5));

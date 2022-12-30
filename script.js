@@ -1,4 +1,4 @@
-'use strict'
+// 'use strict'
 
 // SCRIMBA
 // let fruit = ["🍎", "🍊", "🍎", "🍎", "🍊"]
@@ -73,12 +73,11 @@
 // TEST DATA BONUS 2: Dolphins score 97, 112 and 101.
 // Koalas score 109, 95 and 106
 
-
 // FIRST CHALLENGE
 // let averageDolphinsScore = (96 + 108 + 89) / 3;
 // console.log(averageDolphinsScore);
 
-// let averageKoalasScore = (88 + 91 + 110) / 3; 
+// let averageKoalasScore = (88 + 91 + 110) / 3;
 // console.log(averageKoalasScore);
 
 // if (averageDolphinsScore === averageKoalasScore) {
@@ -97,7 +96,7 @@
 // let averageDolphinsScore = (97 + 112  + 101) / 3;
 // console.log(averageDolphinsScore);
 
-// let averageKoalasScore = (109 + 95  + 123) / 3 
+// let averageKoalasScore = (109 + 95  + 123) / 3
 // console.log(averageKoalasScore);
 
 // if (averageDolphinsScore === averageKoalasScore) {
@@ -109,7 +108,6 @@
 // else if (averageKoalasScore > averageDolphinsScore && averageKoalasScore >= minScore) {
 //   console.log('Koalas win 🏆!')
 // }
-
 
 // let minScore = 100;
 
@@ -137,7 +135,6 @@
 // else {
 //   console.log("Draw but una be olodo! 😒")
 // }
-
 
 // To test FALSY AND TRUTHY values
 // 0, '', undefined, null and NaN are all falsy values
@@ -214,7 +211,6 @@
 // let tip2 = bill2 >= 50 && bill2 <= 300 ? bill2 * .15 : bill2 * .2;
 // console.log(`The bill is ${bill2}, the tip is ${tip2}, and the total is ${bill2 + tip2}.`)
 
-
 // let hasDriversLicense = false;
 // let passTest = true;
 
@@ -245,7 +241,6 @@
 // console.log(typeof num) // number
 // console.log(typeof num)
 
-
 // Function Declaration
 // function calcAge1(birthyear) {
 //   return 2040 - birthyear
@@ -267,7 +262,7 @@
 //   const age = 2037 - birthyear;
 //   const retirement = 70 - age;
 //   // return retirement;
-//   return `${firstname} retires in ${retirement} years.` 
+//   return `${firstname} retires in ${retirement} years.`
 // }
 
 // console.log(yearsUntilRetirement(2000, 'Cow'))
@@ -283,7 +278,6 @@
 //   return `JUICE made from ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`
 // }
 // console.log(fruitProcessor(3, 5));
-
 
 // const calcAge = function(birthyear) {
 //   return 2050 - birthyear
@@ -324,7 +318,6 @@
 // }
 
 // console.log(fruitProcessor(5, 6));
-
 
 // CHALLENGE
 
@@ -404,7 +397,6 @@
 // console.log(friends.includes('Abha'));
 // console.log(friends.includes('Monkey'));
 
-
 // const calcTip = function(bill) {
 //   let tip = bill >= 50 && bill <= 300 ? bill * .15 : bill * .2;
 //   console.log(`The bill is ${bill} and the tip is ${tip}. The total is ${bill + tip}.`);
@@ -417,31 +409,91 @@
 // const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 // console.log(total);
 
+// const Niran = {
+//   firstName: "Adeniran",
+//   lastName: "Adeyemo",
+//   realAge: 2022 - 1500,
+//   job: "Designer/Developer",
+//   friends: ["Abha", "Joko", "Yori", "Asi"]
+// };
+
+// console.log(`${Niran.firstName} ${Niran["lastName"]}.`);
+
+// const ageKey = "Age";
+// console.log(Niran["real" + ageKey]);
+
+// const nameKey = "Name";
+// console.log(Niran["first" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to know about Niran? Choose between firstName, lastName, realAge, job and friends."
+// );
+
+// if (Niran[interestedIn]) {
+//   console.log(Niran[interestedIn]);
+// } else {
+//   console.log(
+//     "Not available! Choose between firstName, lastName, realAge, job and friends."
+//   );
+// }
+
+// Niran.location = "Ago Are";
+// Niran["twitter"] = "@_deniran";
+// console.log(Niran);
+
+// console.log(
+//   `${Niran.firstName} has ${Niran.friends.length} friends and one of them is ${Niran.friends[3]}.`
+// );
+
 const Niran = {
-  firstName: 'Adeniran',
-  lastName: 'Adeyemo',
-  realAge: 2022 - 1500,
-  job: 'Designer/Developer',
-  friends: ['Abha', 'Joko', 'Yori', 'Asi']
+  firstName: "Adeniran",
+  lastName: "Adeyemo",
+  birthyear: 2000,
+  job: "Designer/Developer",
+  friends: ["Abha", "Joko", "Yori", "Asi"],
+  hasDriversLicense: false,
+
+  // calcAge: function (birthyear) {
+  //   return 2022 - birthyear;
+  // }
+
+  // calcAge: function () {
+  //   // console.log(this);
+  //   return 2022 - this.birthyear;
+  // }
+
+  calcAge: function () {
+    this.age = 2022 - this.birthyear;
+    if (this.age > 18) {
+      this.hasDriversLicense = true;
+    } else {
+      this.hasDriversLicense = false;
+    }
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()} year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? `a` : `no`} driver's license.`;
+  }
+  // calcAge: () => 2022 - this.birthyear
+  // Doesn't work with
+  // console.log(Niran.calcAge());
+  // console.log(Niran["calcAge"]());
 };
 
-console.log(`${Niran.firstName} ${Niran['lastName']}.`);
+// console.log(Niran.age);
+// console.log(Niran["age"]);
 
-const ageKey = 'Age';
-console.log(Niran['real' + ageKey]);
+// console.log(Niran.age);
+// console.log(Niran["age"]);
 
-const nameKey = 'Name';
-console.log(Niran['first' + nameKey]);
+// console.log(Niran.calcAge());
+console.log(Niran.getSummary());
 
-const interestedIn = prompt('What do you want to know about Niran? Choose between firstName, lastName, realAge, job and friends.');
-
-
-if (Niran[interestedIn]) {
-  console.log(Niran[interestedIn]);
-} else {
-  console.log('Not available! Choose between firstName, lastName, realAge, job and friends.');
-}
-
-Niran.location = 'Ago Are';
-Niran['twitter'] = '@_deniran';
-console.log(Niran)
+// console.log(
+//   `${Niran.firstName} is a ${Niran.age} year old ${Niran.job}, and he has ${
+//     Niran.hasDriversLicense ? `a` : `no`
+//   } driver's license.`
+// );

@@ -460,7 +460,7 @@ const Niran = {
   // calcAge: function () {
   //   // console.log(this);
   //   return 2022 - this.birthyear;
-  // }
+  // },
 
   calcAge: function () {
     this.age = 2022 - this.birthyear;
@@ -482,6 +482,7 @@ const Niran = {
   // console.log(Niran.calcAge());
   // console.log(Niran["calcAge"]());
 };
+console.log(Niran.getSummary());
 
 // console.log(Niran.age);
 // console.log(Niran["age"]);
@@ -490,10 +491,10 @@ const Niran = {
 // console.log(Niran["age"]);
 
 // console.log(Niran.calcAge());
-console.log(Niran.getSummary());
+// console.log(Niran.getSummary());
 
 // console.log(
-//   `${Niran.firstName} is a ${Niran.age} year old ${Niran.job}, and he has ${
-//     Niran.hasDriversLicense ? `a` : `no`
-//   } driver's license.`
+//   `${Niran.firstName} is a ${Niran.calcAge()} year old ${
+//     Niran.job
+//   }, and he has ${Niran.hasDriversLicense ? `a` : `no`} driver's license.`
 // );

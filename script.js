@@ -475,7 +475,11 @@ const Niran = {
   getSummary: function () {
     return `${this.firstName} is a ${this.calcAge()} year old ${
       this.job
-    }, and he has ${this.hasDriversLicense ? `a` : `no`} driver's license.`;
+    }, and he has ${this.hasDriversLicense ? `a` : `no`} driver's license. ${
+      this.firstName
+    } has more than ${this.friends.length} friends listed here and ${
+      this.friends[2]
+    } is one of them.`;
   }
   // calcAge: () => 2022 - this.birthyear
   // Doesn't work with

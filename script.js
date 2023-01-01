@@ -445,48 +445,49 @@
 //   `${Niran.firstName} has ${Niran.friends.length} friends and one of them is ${Niran.friends[3]}.`
 // );
 
-const Niran = {
-  firstName: "Adeniran",
-  lastName: "Adeyemo",
-  birthyear: 2000,
-  job: "Designer/Developer",
-  friends: ["Abha", "Joko", "Yori", "Asi"],
-  hasDriversLicense: false,
+// const Niran = {
+//   firstName: "Adeniran",
+//   lastName: "Adeyemo",
+//   birthyear: 2000,
+//   job: "Designer/Developer",
+//   friends: ["Abha", "Joko", "Yori", "Asi"],
+//   hasDriversLicense: false,
 
-  // calcAge: function (birthyear) {
-  //   return 2022 - birthyear;
-  // }
+//   calcAge: function (birthyear) {
+//     return 2022 - birthyear;
+//   }
 
-  // calcAge: function () {
-  //   // console.log(this);
-  //   return 2022 - this.birthyear;
-  // },
+//   calcAge: function () {
+//     // console.log(this);
+//     return 2022 - this.birthyear;
+//   },
 
-  calcAge: function () {
-    this.age = 2022 - this.birthyear;
-    if (this.age > 18) {
-      this.hasDriversLicense = true;
-    } else {
-      this.hasDriversLicense = false;
-    }
-    return this.age;
-  },
+//   calcAge: function () {
+//     this.age = 2022 - this.birthyear;
+//     if (this.age > 18) {
+//       this.hasDriversLicense = true;
+//     } else {
+//       this.hasDriversLicense = false;
+//     }
+//     return this.age;
+//   },
 
-  getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()} year old ${
-      this.job
-    }, and he has ${this.hasDriversLicense ? `a` : `no`} driver's license. ${
-      this.firstName
-    } has more than ${this.friends.length} friends listed here and ${
-      this.friends[2]
-    } is one of them.`;
-  }
-  // calcAge: () => 2022 - this.birthyear
-  // Doesn't work with
-  // console.log(Niran.calcAge());
-  // console.log(Niran["calcAge"]());
-};
-console.log(Niran.getSummary());
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()} year old ${
+//       this.job
+//     }, and he has ${this.hasDriversLicense ? `a` : `no`} driver's license. ${
+//       this.firstName
+//     } has more than ${this.friends.length} friends listed here and ${
+//       this.friends[2]
+//     } is one of them.`;
+//   }
+//   calcAge: () => 2022 - this.birthyear
+//   Doesn't work with
+//   console.log(Niran.calcAge());
+//   console.log(Niran["calcAge"]());
+// };
+
+// console.log(Niran.getSummary());
 
 // console.log(Niran.age);
 // console.log(Niran["age"]);
@@ -502,3 +503,40 @@ console.log(Niran.getSummary());
 //     Niran.job
 //   }, and he has ${Niran.hasDriversLicense ? `a` : `no`} driver's license.`
 // );
+
+const Mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  }
+};
+const John = {
+  firstName: "John",
+  lastName: "Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  }
+};
+
+console.log(
+  `${
+    Mark.calcBMI() > John.calcBMI()
+      ? `${Mark.firstName} ${Mark.lastName}'s BMI (${Mark.calcBMI().toFixed(
+          2
+        )}) is higher than ${John.firstName} ${
+          John.lastName
+        }'s (${John.calcBMI().toFixed(2)})`
+      : `${John.firstName} ${John.lastName}'s BMI (${John.calcBMI().toFixed(
+          2
+        )}) is higher than ${Mark.firstName} ${
+          Mark.lastName
+        }'s (${Mark.calcBMI().toFixed(2)})`
+  }. `
+);

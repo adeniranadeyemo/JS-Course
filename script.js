@@ -525,18 +525,21 @@ const John = {
   }
 };
 
+Mark.calcBMI();
+John.calcBMI();
+
 console.log(
   `${
-    Mark.calcBMI() > John.calcBMI()
-      ? `${Mark.firstName} ${Mark.lastName}'s BMI (${Mark.calcBMI().toFixed(
+    Mark.bmi > John.bmi
+      ? `${Mark.firstName} ${Mark.lastName}'s BMI (${Mark.bmi.toFixed(
           2
         )}) is higher than ${John.firstName} ${
           John.lastName
-        }'s (${John.calcBMI().toFixed(2)})`
-      : `${John.firstName} ${John.lastName}'s BMI (${John.calcBMI().toFixed(
+        }'s (${John.bmi.toFixed(2)})`
+      : `${John.firstName} ${John.lastName}'s BMI (${John.bmi.toFixed(
           2
         )}) is higher than ${Mark.firstName} ${
           Mark.lastName
-        }'s (${Mark.calcBMI().toFixed(2)})`
+        }'s (${Mark.bmi.toFixed(2)})`
   }. `
 );

@@ -608,13 +608,13 @@
 //   console.log(niran[i]);
 // }
 
-for (let exercise = 1; exercise < 4; exercise++) {
-  console.log(`------ Starting Exercise ${exercise}`);
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`------ Starting Exercise ${exercise}`);
 
-  for (let rep = 1; rep < 6; rep++) {
-    console.log(`Exercise ${exercise}: Lifting weight repitition ${rep}!`);
-  }
-}
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Exercise ${exercise}: Lifting weight repitition ${rep}!`);
+//   }
+// }
 
 // const niran = [
 //   "Adeniran",
@@ -637,3 +637,42 @@ for (let exercise = 1; exercise < 4; exercise++) {
 //     console.log(niran[4][y]);
 //   }
 // }
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repitition ${rep}! 🏋🏾`);
+// }
+
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`WHILE: Lifting weights repitition ${rep}! 🏋🏾`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) console.log(`You finally rolled a ${dice}! 🎊`);
+// }
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+const calcTip = function (bill) {
+  let tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+  console.log(
+    `The bill is ${bill} and the tip is ${tip}. The total is ${bill + tip}.`
+  );
+  return tip;
+};
+
+for (let i = 0; i <= bills.length - 1; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(bills[i] + tips[i]);
+  console.log(`Bill: ${bills[i]}. Tip: ${tips[i]}. Total: ${totals[i]}`);
+  console.log(" ");
+}
+console.log(tips);
+console.log(totals);

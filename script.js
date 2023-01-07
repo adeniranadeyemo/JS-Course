@@ -504,42 +504,136 @@
 //   }, and he has ${Niran.hasDriversLicense ? `a` : `no`} driver's license.`
 // );
 
-const Mark = {
-  firstName: "Mark",
-  lastName: "Miller",
-  mass: 78,
-  height: 1.69,
-  calcBMI: function () {
-    this.bmi = this.mass / this.height ** 2;
-    return this.bmi;
-  }
-};
-const John = {
-  firstName: "John",
-  lastName: "Smith",
-  mass: 92,
-  height: 1.95,
-  calcBMI: function () {
-    this.bmi = this.mass / this.height ** 2;
-    return this.bmi;
-  }
-};
+// let firstName = prompt("What is your first name?", "");
+// alert(`Your first name is ${firstName}!`);
 
-Mark.calcBMI();
-John.calcBMI();
+// const Mark = {
+//   firstName: "Mark",
+//   lastName: "Miller",
+//   mass: 78,
+//   height: 1.69,
+//   calcBMI: function () {
+//     this.bmi = this.mass / this.height ** 2;
+//     return this.bmi;
+//   }
+// };
+// const John = {
+//   firstName: "John",
+//   lastName: "Smith",
+//   mass: 92,
+//   height: 1.95,
+//   calcBMI: function () {
+//     this.bmi = this.mass / this.height ** 2;
+//     return this.bmi;
+//   }
+// };
 
-console.log(
-  `${
-    Mark.bmi > John.bmi
-      ? `${Mark.firstName} ${Mark.lastName}'s BMI (${Mark.bmi.toFixed(
-          2
-        )}) is higher than ${John.firstName} ${
-          John.lastName
-        }'s (${John.bmi.toFixed(2)})`
-      : `${John.firstName} ${John.lastName}'s BMI (${John.bmi.toFixed(
-          2
-        )}) is higher than ${Mark.firstName} ${
-          Mark.lastName
-        }'s (${Mark.bmi.toFixed(2)})`
-  }. `
-);
+// Mark.calcBMI();
+// John.calcBMI();
+
+// console.log(
+//   `${
+//     Mark.bmi > John.bmi
+//       ? `${Mark.firstName} ${Mark.lastName}'s BMI (${Mark.bmi.toFixed(
+//           2
+//         )}) is higher than ${John.firstName} ${
+//           John.lastName
+//         }'s (${John.bmi.toFixed(2)})`
+//       : `${John.firstName} ${John.lastName}'s BMI (${John.bmi.toFixed(
+//           2
+//         )}) is higher than ${Mark.firstName} ${
+//           Mark.lastName
+//         }'s (${Mark.bmi.toFixed(2)})`
+//   }. `
+// );
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repitition ${rep}!`);
+// }
+
+// const niran = [
+//   "Adeniran",
+//   "Adeyemo",
+//   2022 - 2000,
+//   "Designer/Developer",
+//   ["Abha", "Joko", "Yori", "Asi"]
+// ];
+
+// const types = [];
+
+// for (let i = 0; i < niran.length; i++) {
+//Reading from jonas array
+// console.log(niran[i], typeof niran[i]);
+
+//Filling types array
+// types[i] = typeof niran[i];
+// types.push(typeof niran[i]);
+// }
+
+// console.log(types);
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+// ages.push(2023 - years[i]);
+// }
+// console.log(ages);
+
+// continue and break
+// console.log("--- ONLY STRINGS ---");
+// for (let i = 0; i < niran.length; i++) {
+// if (typeof niran[i] !== "string") continue;
+
+// console.log(niran[i], typeof niran[i]);
+// }
+
+// console.log("--- BREAK WITH NUMBER ---");
+// for (let i = 0; i < niran.length; i++) {
+// if (typeof niran[i] === "number") break;
+
+// console.log(niran[i], typeof niran[i]);
+// }
+
+// const niran = [
+//   "Adeniran",
+//   "Adeyemo",
+//   2022 - 2000,
+//   "Designer/Developer",
+//   ["Abha", "Joko", "Yori", "Asi", "Nguyen", "Eli"],
+//   true
+// ];
+
+// for (let i = niran.length - 1; i >= 0; i--) {
+//   console.log(niran[i]);
+// }
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`------ Starting Exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise ${exercise}: Lifting weight repitition ${rep}!`);
+  }
+}
+
+// const niran = [
+//   "Adeniran",
+//   "Adeyemo",
+//   2022 - 2000,
+//   "Designer/Developer",
+//   ["Abha", "Joko", "Yori", "Asi", "Nguyen", "Eli"]
+// ];
+
+// for (let i = niran.length - 5; i >= 0; i--) {
+//   // console.log(niran[i]);
+//   for (let y = niran.length; y >= 0; y--) {
+//     console.log(niran[4][y]);
+//   }
+// }
+
+// for (let i = 0; i <= niran.length - 5; i++) {
+//   // console.log(niran[i]);
+//   for (let y = 0; y <= niran.length; y++) {
+//     console.log(niran[4][y]);
+//   }
+// }

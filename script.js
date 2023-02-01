@@ -9,52 +9,84 @@
 // document.querySelector('.guess').value = 20;
 // console.log(document.querySelector('.guess').value);
 
-const btn = document.querySelector('.check');
-const msg = document.querySelector('.message');
-let randNumber = Math.trunc(Math.random() * 20) + 1;
-let rightNumber = document.querySelector('.number');
-let score = 20;
-const body = document.querySelector('body');
+const checkBtn = document.querySelector('.check');
 const againBtn = document.querySelector('.again');
+const body = document.querySelector('body');
+// const message = document.querySelector('.message');
+let displayScore = document.querySelector('.score');
+let highScore = document.querySelector('.highscore');
+let rightNumber = document.querySelector('.number');
+let randNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 20;
+let highscore = 0;
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+};
 
-btn.addEventListener('click', () => {
+checkBtn.addEventListener('click', () => {
   const guess = Number(document.querySelector('.guess').value);
-  // console.log(guess, typeof guess);
-  let displayScore = document.querySelector('.score');
-  let highScore = document.querySelector('.highscore');
 
   if (!guess) {
-    msg.textContent = '⛔ No number!';
-  } else if (guess > randNumber) {
-    if (score > 1) {
-      msg.textContent = 'Not right, too high! 📈';
-      score--;
-      displayScore.textContent = score;
-    } else {
-      msg.textContent = `You've lost the game!`;
-      displayScore.textContent = 0;
-    }
-  } else if (guess < randNumber) {
-    if (score > 1) {
-      msg.textContent = 'Not right, too low! 📉';
-      score--;
-      displayScore.textContent = score;
-    } else {
-      msg.textContent = `You've lost the game!`;
-      displayScore.textContent = 0;
-    }
-  } else {
-    msg.textContent = 'Correct!! 🎊';
-    highScore.textContent = score;
+    displayMessage('⛔ No number!');
+  } else if (guess === randNumber) {
+    displayMessage('Correct!! 🎊');
     rightNumber.textContent = randNumber;
     rightNumber.style.width = '30rem';
     body.style.backgroundColor = '#2cbb00';
+
+    if (score > highscore) {
+      highscore = score;
+      highScore.textContent = highscore;
+    }
+  } else if (guess !== randNumber) {
+    if (score > 1) {
+      displayMessage(
+        guess > randNumber
+          ? 'Not right, too high! 📈'
+          : 'Not right, too low! 📉'
+      );
+      score--;
+      displayScore.textContent = score;
+    } else {
+      displayMessage(`You've lost the game!`);
+      displayScore.textContent = 0;
+    }
   }
 });
 
+// checkBtn.addEventListener('click', () => {
+//   const guess = Number(document.querySelector('.guess').value);
+//   // console.log(guess, typeof guess);
+
+//   if (!guess) {
+//     msg.textContent = '⛔ No number!';
+//   } else if (guess === randNumber) {
+//     msg.textContent = 'Correct!! 🎊';
+//     rightNumber.textContent = randNumber;
+//     rightNumber.style.width = '30rem';
+//     body.style.backgroundColor = '#2cbb00';
+
+//     if (score > highscore) {
+//       highscore = score;
+//       highScore.textContent = highscore;
+//     }
+//   } else if (guess !== randNumber) {
+//     if (score > 1) {
+//       msg.textContent =
+//         guess > randNumber
+//           ? 'Not right, too high! 📈'
+//           : 'Not right, too low! 📉';
+//       score--;
+//       displayScore.textContent = score;
+//     } else {
+//       msg.textContent = `You've lost the game!`;
+//       displayScore.textContent = 0;
+//     }
+//   }
+// });
+
 againBtn.addEventListener('click', () => {
   let displayScore = document.querySelector('.score');
-  let highScore = document.querySelector('.highscore');
   let guess = document.querySelector('.guess');
   randNumber = Math.trunc(Math.random() * 20) + 1;
 
@@ -62,9 +94,8 @@ againBtn.addEventListener('click', () => {
 
   rightNumber.textContent = '?';
   rightNumber.style.width = '15rem';
-  msg.textContent = 'Start guessing...';
+  displayMessage('Start guessing...');
   displayScore.textContent = 20;
-  highScore.textContent = 0;
   guess.value = ' ';
   body.style.backgroundColor = '#222';
 });

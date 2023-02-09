@@ -55,9 +55,8 @@ const displayDice = function () {
 
     if (randDiceRoll !== 1) {
       currentScore += randDiceRoll;
-      document.getElementById(
-        `current--${activePlayer}`
-      ).textContent = currentScore;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
     } else {
       switchPlayer();
     }

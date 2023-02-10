@@ -23,6 +23,10 @@ body {
 }
 
 /* LAYOUT */
+.hidden {
+  display: none;
+}
+
 main {
   position: relative;
   width: 100rem;

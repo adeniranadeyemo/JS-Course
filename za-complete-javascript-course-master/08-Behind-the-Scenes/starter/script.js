@@ -105,4 +105,3 @@
 // console.log(x === window.x);
 // console.log(y === window.y);
 // console.log(z === window.z);
-

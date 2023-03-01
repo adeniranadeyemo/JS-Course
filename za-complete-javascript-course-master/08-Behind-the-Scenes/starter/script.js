@@ -143,14 +143,13 @@
 // const t = niran.calcAge;
 // t();
 
-
 // An arrow function doesn't get it's own this keyword
 // Arrow functions as methods in objects get their 'this' keyword value from their parent scope.
 
 const niran = {
   firstName: 'Adeniran',
   birthyear: 2000,
-  calcAge: function() {
+  calcAge: function () {
     // console.log(this);
     // console.log(2023 - this.birthyear);
 
@@ -165,29 +164,40 @@ const niran = {
     const isMillenial = () => {
       console.log(this);
       console.log(this.birthyear >= 1981 && this.birthyear <= 1996);
-    }
+    };
 
     isMillenial();
   },
   greet: () => {
     console.log(this);
-    console.log(`Hey, ${this.firstName}`) 
-  }
+    console.log(`Hey, ${this.firstName}`);
+  },
 };
 // niran.calcAge();
 // niran.greet();
 
-
 // Argument keywrod
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 3);
-addExpr(2, 3, 5, 4);
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpr(2, 3);
+// addExpr(2, 3, 15, 4);
 
-var addArrow = (a, b) => {
-  console.log(arguments)
-  return a + b;
-}
-addArrow(2, 4, 5);
+// var addArrow = (a, b) => {
+//   console.log(arguments)
+//   return a + b;
+// }
+
+// addArrow(2, 5, 10);
+
+let age = 30;
+let oldAge = age;
+age = 31;
+const y = 24844;
+let name = 'Niran';
+
+const add = function () {
+  return 2 + 2;
+};
+console.log(add);

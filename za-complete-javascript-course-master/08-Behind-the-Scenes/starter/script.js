@@ -191,22 +191,49 @@ const niran = {
 
 // addArrow(2, 5, 10);
 
-let age = 30;
-let oldAge = age;
-age = 31;
-console.log(age);
-console.log(oldAge);
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age);
+// console.log(oldAge);
 
-const me = {
-  name: 'Niran',
-  age: 23,
+// const me = {
+//   name: 'Niran',
+//   age: 23,
+// };
+// //Before reassigning age for friend
+// console.log('Me:', me);
+// const friend = me;
+// console.log('Friend:', friend);
+
+// //After reassigning age for friend
+// friend.age = 22;
+// console.log('Friend:', friend);
+// console.log('Me:', me);
+
+
+//Primitive Types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+const lady = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
 };
-//Before reassigning age for friend
-console.log('Me:', me);
-const friend = me;
-console.log('Friend:', friend);
 
-//After reassigning age for friend
-friend.age = 22;
-console.log('Friend:', friend);
-console.log('Me:', me);
+// Reference Types
+const marriedLady = lady;
+marriedLady.lastName = 'Davis';
+marriedLady.age = 28;
+console.log('Before marriage:', lady);
+console.log('After marriage:', marriedLady);
+
+//Copying objects
+const lady2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};

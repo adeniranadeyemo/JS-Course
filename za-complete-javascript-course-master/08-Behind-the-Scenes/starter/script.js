@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 // function calcAge(birthyear) {
 //     const age = 2023 - birthyear;
 
@@ -105,3 +105,89 @@
 // console.log(x === window.x);
 // console.log(y === window.y);
 // console.log(z === window.z);
+
+// console.log(this);
+
+// const calcAge = function (birthyear) {
+//   console.log(2037 - birthyear);
+//   console.log(this);
+// };
+// calcAge(1980);
+
+// const calcAgeArrow = birthyear => {
+//   console.log(2037 - birthyear);
+//   console.log(this);
+// };
+
+// calcAgeArrow(1980);
+
+// The this keyword is very dynamic. It depends on the object that it it's attached to.
+
+// const niran = {
+//   birthyear: 2000,
+//   calcAge: function() {
+//     console.log(this);
+//     console.log(2023 - this.birthyear);
+//   },
+// };
+
+// niran.calcAge();
+
+// const mat = {
+//   birthyear: 2002,
+// }
+
+// mat.calcAge = niran.calcAge;
+// mat.calcAge();
+
+// const t = niran.calcAge;
+// t();
+
+
+// An arrow function doesn't get it's own this keyword
+// Arrow functions as methods in objects get their 'this' keyword value from their parent scope.
+
+const niran = {
+  firstName: 'Adeniran',
+  birthyear: 2000,
+  calcAge: function() {
+    // console.log(this);
+    // console.log(2023 - this.birthyear);
+
+    // Solution 1
+    // const self = this; //self or that
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.birthyear >= 1981 && self.birthyear <= 1996);
+    // }
+
+    //Solution 2
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.birthyear >= 1981 && this.birthyear <= 1996);
+    }
+
+    isMillenial();
+  },
+  greet: () => {
+    console.log(this);
+    console.log(`Hey, ${this.firstName}`) 
+  }
+};
+// niran.calcAge();
+// niran.greet();
+
+
+// Argument keywrod
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 3);
+addExpr(2, 3, 5, 4);
+
+var addArrow = (a, b) => {
+  console.log(arguments)
+  return a + b;
+}
+addArrow(2, 4, 5);

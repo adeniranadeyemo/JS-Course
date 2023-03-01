@@ -211,7 +211,6 @@ const niran = {
 // console.log('Friend:', friend);
 // console.log('Me:', me);
 
-
 //Primitive Types
 let lastName = 'Williams';
 let oldLastName = lastName;
@@ -237,3 +236,9 @@ const lady2 = {
   lastName: 'Williams',
   age: 27,
 };
+
+const ladyCopy = Object.assign({}, lady2);
+ladyCopy.lastName = 'Davis';
+ladyCopy.age = 28;
+console.log('Before marriage:', lady2);
+console.log('After marriage:', ladyCopy);

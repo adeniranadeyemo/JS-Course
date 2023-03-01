@@ -194,10 +194,19 @@ const niran = {
 let age = 30;
 let oldAge = age;
 age = 31;
-const y = 24844;
-let name = 'Niran';
+console.log(age);
+console.log(oldAge);
 
-const add = function () {
-  return 2 + 2;
+const me = {
+  name: 'Niran',
+  age: 23,
 };
-console.log(add);
+//Before reassigning age for friend
+console.log('Me:', me);
+const friend = me;
+console.log('Friend:', friend);
+
+//After reassigning age for friend
+friend.age = 22;
+console.log('Friend:', friend);
+console.log('Me:', me);

@@ -32,33 +32,47 @@ const restaurant = {
   },
 };
 
-const arr = [1, 2, 5];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+const {
+  name: restaurantName,
+  openingHours: Hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, Hours, tags);
+
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+// const arr = [1, 2, 5];
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
 
 // console.log(a, b, c);
 
-const [x, y, z] = arr;
-console.log(x, y, z);
+// const [x, y, z] = arr;
+// console.log(x, y, z);
 
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary);
+// let [main, , secondary] = restaurant.categories;
+// console.log(main, secondary);
 
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
 
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse);
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
+// console.log(`${mainCourse} is from Italy.`);
 
 //Nested destructuring
-const nested = [2, 4, [5, 6]];
+// const nested = [2, 4, [5, 6]];
 // let [first, , third] = nested;
 // console.log(first, third);
 
-let [first, , [third, fourth]] = nested;
-console.log(first, third, fourth);
+// let [first, , [third, fourth]] = nested;
+// console.log(first, third, fourth);
 
 //Default values
-const [p = 1, q = 2, r = 3] = [8, 9];
-console.log(p, q, r);
+// const [p = 1, q = 2, r = 3] = [8, 9];
+// console.log(p, q, r);

@@ -163,6 +163,7 @@ const niran = {
     //Solution 2
     const isMillenial = () => {
       console.log(this);
+      console.log(`Hey, ${this.firstName}`);
       console.log(this.birthyear >= 1981 && this.birthyear <= 1996);
     };
 
@@ -176,7 +177,7 @@ const niran = {
 // niran.calcAge();
 // niran.greet();
 
-// Argument keywrod
+// Argument keyword
 // const addExpr = function (a, b) {
 //   console.log(arguments);
 //   return a + b;
@@ -215,7 +216,7 @@ const niran = {
 let lastName = 'Williams';
 let oldLastName = lastName;
 lastName = 'Davis';
-console.log(lastName, oldLastName);
+// console.log(lastName, oldLastName);
 
 const lady = {
   firstName: 'Jessica',
@@ -227,18 +228,24 @@ const lady = {
 const marriedLady = lady;
 marriedLady.lastName = 'Davis';
 marriedLady.age = 28;
-console.log('Before marriage:', lady);
-console.log('After marriage:', marriedLady);
+// console.log('Before marriage:', lady);
+// console.log('After marriage:', marriedLady);
 
 //Copying objects
 const lady2 = {
   firstName: 'Jessica',
   lastName: 'Williams',
-  age: 27,
+  age: 25,
+  family: ['Alice', 'Bob'],
 };
 
 const ladyCopy = Object.assign({}, lady2);
 ladyCopy.lastName = 'Davis';
-ladyCopy.age = 28;
-console.log('Before marriage:', lady2);
-console.log('After marriage:', ladyCopy);
+ladyCopy.age = 27;
+// console.log('Before marriage:', lady2);
+// console.log('After marriage:', ladyCopy);
+
+ladyCopy.family.push('Daniel');
+ladyCopy.family.push('Matthew');
+// console.log('Before marriage:', lady2);
+// console.log('After marriage:', ladyCopy);

@@ -11,11 +11,6 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-
   openingHours: {
     thu: {
       open: 12,
@@ -30,7 +25,30 @@ const restaurant = {
       close: 24,
     },
   },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({
+    time = '21:00',
+    address = 'Iwo Road',
+    starterIndex = 1,
+    mainIndex = 2,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
+    );
+  },
 };
+
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Kulodi',
+  starterIndex: 2,
+  mainIndex: 1,
+});
+
+restaurant.orderDelivery({});
 
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
@@ -42,8 +60,28 @@ const {
 } = restaurant;
 console.log(restaurantName, Hours, tags);
 
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+//Menu is empty as it is not defined in the restaurant oblect. It resturns undefined if the square brackets are not present
+// Default values
+// let { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+
+// Mutating variables
+let a = 111;
+let b = 222;
+const obj = {
+  a: 23,
+  b: 7,
+  c: 24,
+};
+({ a, b } = obj);
+
+console.log(a, b);
+
+//Nested objects
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
 
 // const arr = [1, 2, 5];
 // const a = arr[0];

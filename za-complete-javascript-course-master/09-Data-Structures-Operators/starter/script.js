@@ -29,7 +29,8 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
+  //Predefined values
+  orderDeliveryOne: function ({
     time = '21:00',
     address = 'Iwo Road',
     starterIndex = 1,
@@ -39,26 +40,44 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
     );
   },
+
+  orderDeliveryTwo: function ({ mainIndex, starterIndex, address, time }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
+    );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2}, ${ing3}.`);
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    // console.log(mainIngredient);
+    // console.log(otherIngredients);
+    // console.log(
+    //   `The main ingredient is ${mainIngredient} and other ingredients are ${otherIngredients}.`
+    // );
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Kulodi',
-  starterIndex: 2,
-  mainIndex: 1,
-});
+// restaurant.orderDeliveryTwo({
+//   time: '22:30',
+//   address: 'Kulodi',
+//   starterIndex: 2,
+//   mainIndex: 1,
+// });
 
-restaurant.orderDelivery({});
+// restaurant.orderDeliveryOne({});
 
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
 
-const {
-  name: restaurantName,
-  openingHours: Hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, Hours, tags);
+// const {
+//   name: restaurantName,
+//   openingHours: Hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, Hours, tags);
 
 //Menu is empty as it is not defined in the restaurant oblect. It resturns undefined if the square brackets are not present
 // Default values
@@ -66,22 +85,23 @@ console.log(restaurantName, Hours, tags);
 // console.log(menu, starters);
 
 // Mutating variables
-let a = 111;
-let b = 222;
-const obj = {
-  a: 23,
-  b: 7,
-  c: 24,
-};
-({ a, b } = obj);
+// let a = 111;
+// let b = 222;
+// const obj = {
+//   a: 23,
+//   b: 7,
+//   c: 24,
+// };
+// ({ a, b } = obj);
 
-console.log(a, b);
+// console.log(a, b);
 
 //Nested objects
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
+// console.log(openingHours.fri);
 
 // const arr = [1, 2, 5];
 // const a = arr[0];
@@ -99,6 +119,8 @@ console.log(o, c);
 // [main, secondary] = [secondary, main];
 // console.log(main, secondary);
 
+// console.log(...restaurant.order(2, 2));
+
 // const [starter, mainCourse] = restaurant.order(2, 0);
 // console.log(starter, mainCourse);
 // console.log(`${mainCourse} is from Italy.`);
@@ -114,3 +136,100 @@ console.log(o, c);
 //Default values
 // const [p = 1, q = 2, r = 3] = [8, 9];
 // console.log(p, q, r);
+
+//Spread Operator
+// const arr = [7, 8, 9];
+// const newArr = [1, 2, 3, ...arr];
+// console.log(newArr);
+// console.log(...arr);
+
+// const newMenu = [...restaurant.mainMenu, 'Broccolli'];
+// console.log(newMenu);
+
+//Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
+// console.log(mainMenuCopy);
+
+//Joining two or more arrays
+// const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(menu);
+
+//Iterables are arrays, strings, maps, sets BUT NOT objects.
+// const str = 'Niran';
+// const letters = [...str, ' ', `!`];
+// console.log(letters);
+// console.log(...letters);
+// console.log(...str);
+// console.log(`${...str} `)
+
+// const ingredients = [
+//   prompt(`Let's make pizza! Ingredient 1?`),
+//   prompt(`Ingredient 2?`),
+//   prompt(`Ingredient 3?`),
+// ];
+
+// console.log(ingredients);
+// console.log(...ingredients);
+// restaurant.orderPasta(...ingredients);
+
+// const newRestaurant = {
+//   ...restaurant,
+//   founder: 'Guiseppe Rugani',
+//   yearFound: 1980,
+// };
+// console.log(newRestaurant);
+
+// const restaurantCopy = { ...restaurant };
+// console.log(restaurantCopy);
+// restaurantCopy.name = 'Ristorante al Napoli';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+
+// SPREAD from the RHS
+// const arr = [1, 2, 3, ...[4, 5, 6]];
+// console.log(arr);
+
+//Rest Pattern and Parameters
+
+// 1) Destructuring
+// REST on the LHS of Arrays
+// const [a, b, ...others] = [1, 2, 3, 4, 5, 6];
+// console.log(a, b, others);
+
+// const [Pizza, , Risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(Pizza, Risotto, otherFood);
+
+// REST on the LHS of Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
+
+// 2) Functions
+// const add = function (...numbers) {
+//   console.log(numbers);
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//     console.log(sum);
+//   }
+// };
+
+// add(2, 3);
+// add(5, 2, 5, 3);
+// add(5, 3, 8, 1, 4);
+
+// const x = [23, 5, 7];
+// add(...x);
+
+// const pizzaIngredients = [
+//   'mushrooms',
+//   'onion',
+//   'olives',
+//   'spinach',
+//   'ugwu',
+//   'cheese',
+// ];
+// restaurant.orderPizza(...pizzaIngredients);
+// restaurant.orderPizza('mushrooms');

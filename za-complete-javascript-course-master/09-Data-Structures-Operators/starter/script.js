@@ -52,13 +52,47 @@ const restaurant = {
   },
 
   orderPizza: function (mainIngredient, ...otherIngredients) {
-    // console.log(mainIngredient);
-    // console.log(otherIngredients);
+    console.log(mainIngredient);
+    console.log(otherIngredients);
     // console.log(
     //   `The main ingredient is ${mainIngredient} and other ingredients are ${otherIngredients}.`
     // );
   },
 };
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Luka Pellegrini',
+};
+
+// OR Assignment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// console.log(rest1);
+// console.log(rest2);
+
+// NULLISH assignment operator (null or undefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+
+// AND assignment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+
+// rest1.owner &&= '<ANONYMOUS>';
+// rest2.owner &&= '<ANONYMOUS>';
+
+// console.log(rest1);
+// console.log(rest2);
 
 // restaurant.orderDeliveryTwo({
 //   time: '22:30',
@@ -233,3 +267,124 @@ const restaurant = {
 // ];
 // restaurant.orderPizza(...pizzaIngredients);
 // restaurant.orderPizza('mushrooms');
+
+//
+// Shortcircuiting
+// console.log('---OR---');
+
+// console.log(3 || 'Niran');
+// console.log('' || 'Niran');
+// console.log(true || 0);
+// console.log(undefined || null);
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// restaurant.numGuest = 0;
+// restaurant.numGuest = 23;
+
+// const guests1 = restaurant.numGuest ? restaurant.numGuest : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuest || 10;
+// console.log(guests2);
+
+// console.log('---AND---');
+// console.log(0 && 'Niran');
+// console.log(7 && 'Niran');
+// console.log('Hello' && 20 && null && 'Niran');
+
+// Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// restaurant.numGuest = 0;
+
+// const guests2 = restaurant.numGuest || 10;
+// console.log(guests2);
+
+// Nullish: null and undefined (NOT 0 or '')
+// const guestCorrect = restaurant.numGuest ?? 10;
+// console.log(guestCorrect);
+
+// CHALLENGE
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnabry',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+  printGoals: function (...playersThatScored) {
+    let sum = '';
+    for (let i = 0; i < playersThatScored.length; i++) {
+      sum += playersThatScored[i] + ' ';
+    }
+    console.log(...playersThatScored);
+    console.log(`${sum} scored ${playersThatScored.length} goals.`);
+  },
+};
+
+// 1
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
+// 2
+const [gk1, ...fieldPlayers1] = players1;
+console.log(gk1, fieldPlayers1);
+
+const [gk2, ...fieldPlayers2] = players2;
+console.log(gk2, fieldPlayers2);
+
+// 3
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+// 4
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
+
+// 5
+const { team1, x: draw, team2 } = game.odds;
+console.log(team1, draw, team2);
+
+// 6
+game.printGoals('Gnabry', 'Muller', 'Coman', 'Goretzka', 'Kimmich');
+game.printGoals(...game.scored);
+
+// 7
+team1 < team2 && console.log(`${game.team1} is more likely to win.`);
+team2 < team1 && console.log(`${game.team2} is more likely to win.`);

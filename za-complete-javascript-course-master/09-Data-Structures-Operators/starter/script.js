@@ -31,6 +31,7 @@ const restaurant = {
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
   // ES6 enhanced object literals
   openingHours,
   //Predefined values
@@ -65,6 +66,7 @@ const restaurant = {
   },
 };
 
+//////////////////////////////////////////////
 // PROPERTY NAMES
 // const properties = Object.keys(openingHours);
 // console.log(properties);
@@ -80,7 +82,7 @@ const restaurant = {
 // const values = Object.values(openingHours);
 // console.log(values);
 
-// ENTIRE OBJECT
+//ENTIRE OBJECT
 // const entries = Object.entries(openingHours);
 // console.log(entries);
 
@@ -91,7 +93,7 @@ const restaurant = {
 // console.log(restaurant.openingHours.sat.open);
 // console.log(restaurant.openingHours.mon.open);
 
-// OPTIONAL CHAINING (returns undefined if value on object does not exist instead of an error)
+//////////////////////////////////////// OPTIONAL CHAINING (returns undefined if value on object does not exist instead of an error)
 // console.log(restaurant.openingHours.mon?.open);
 // console.log(restaurant.openingHours?.mon?.open);
 
@@ -106,7 +108,9 @@ const restaurant = {
 
 // console.log(restaurant.orderRice?.(0, 2) ?? 'Method does not exist.');
 
-// OPTIONAL ARRAYS with arrays
+////////////////////////////////////////////////////
+
+// OPTIONAL CHAINING with arrays
 // const users = [
 //   {
 //     name: 'Niran',
@@ -120,7 +124,7 @@ const restaurant = {
 // console.log(users?.[4]?.name ?? 'Users array or index empty.');
 // console.log(users[0]?.name ?? 'Users array index empty.');
 
-////// ES6 FOR OF LOOP
+/////////////////////////// ES6 FOR OF LOOP
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 // for (const item of menu) {
@@ -136,6 +140,8 @@ const restaurant = {
 // }
 
 // console.log([...menu.entries()]);
+
+////////////////////////////////////////////////
 
 // const rest1 = {
 //   name: 'Capri',
@@ -170,6 +176,8 @@ const restaurant = {
 
 // console.log(rest1);
 // console.log(rest2);
+
+/////////////////////////////////////////////////
 
 // restaurant.orderDeliveryTwo({
 //   time: '22:30',
@@ -207,7 +215,7 @@ const restaurant = {
 
 // console.log(a, b);
 
-//Nested objects
+//////////////////////////////////Nested objects
 // const {
 //   fri: { open: o, close: c },
 // } = openingHours;
@@ -236,7 +244,7 @@ const restaurant = {
 // console.log(starter, mainCourse);
 // console.log(`${mainCourse} is from Italy.`);
 
-//Nested destructuring
+// Nested destructuring
 // const nested = [2, 4, [5, 6]];
 // let [first, , third] = nested;
 // console.log(first, third);
@@ -247,6 +255,8 @@ const restaurant = {
 //Default values
 // const [p = 1, q = 2, r = 3] = [8, 9];
 // console.log(p, q, r);
+
+//////////////////////////////////////////////
 
 //Spread Operator
 // const arr = [7, 8, 9];
@@ -274,7 +284,7 @@ const restaurant = {
 // console.log(`${...str} `)
 
 // const ingredients = [
-//   prompt(`Let's make pizza! Ingredient 1?`),
+//   prompt(`Let's make pasta! Ingredient 1?`),
 //   prompt(`Ingredient 2?`),
 //   prompt(`Ingredient 3?`),
 // ];
@@ -295,6 +305,8 @@ const restaurant = {
 // restaurantCopy.name = 'Ristorante al Napoli';
 // console.log(restaurantCopy.name);
 // console.log(restaurant.name);
+
+/////////////////////////////////////////////////
 
 // SPREAD from the RHS
 // const arr = [1, 2, 3, ...[4, 5, 6]];
@@ -345,7 +357,8 @@ const restaurant = {
 // restaurant.orderPizza(...pizzaIngredients);
 // restaurant.orderPizza('mushrooms');
 
-//
+////////////////////////////////////////////////
+
 // Shortcircuiting
 // console.log('---OR---');
 
@@ -386,56 +399,56 @@ const restaurant = {
 // console.log(guestCorrect);
 
 // CHALLENGE
-// const game = {
-//   team1: 'Bayern Munich',
-//   team2: 'Borrussia Dortmund',
-//   players: [
-//     [
-//       'Neuer',
-//       'Pavard',
-//       'Martinez',
-//       'Alaba',
-//       'Davies',
-//       'Kimmich',
-//       'Goretzka',
-//       'Coman',
-//       'Muller',
-//       'Gnabry',
-//       'Lewandowski',
-//     ],
-//     [
-//       'Burki',
-//       'Schulz',
-//       'Hummels',
-//       'Akanji',
-//       'Hakimi',
-//       'Weigl',
-//       'Witsel',
-//       'Hazard',
-//       'Brandt',
-//       'Sancho',
-//       'Gotze',
-//     ],
-//   ],
-//   score: '4:0',
-//   scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Hummels'],
-//   date: 'Nov 9th, 2037',
-//   odds: {
-//     team1: 1.33,
-//     x: 3.25,
-//     team2: 6.5,
-//   },
-//   printGoals: function (...playersThatScored) {
-//     let sum = '';
-//     for (let i = 0; i < playersThatScored.length; i++) {
-//       sum += playersThatScored[i] + ' ';
-//     }
-//     console.log(...playersThatScored);
-//     console.log(
-//       `${playersThatScored} scored ${playersThatScored.length} goals.`
-//     );
-//   },
-// };
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnabry',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+  printGoals: function (...playersThatScored) {
+    let sum = '';
+    for (let i = 0; i < playersThatScored.length; i++) {
+      sum += playersThatScored[i] + ' ';
+    }
+    // console.log(...playersThatScored);
+    // console.log(
+    //   `${playersThatScored} scored ${playersThatScored.length} goals.`
+    // );
+  },
+};
 
 // 1
 // const [players1, players2] = game.players;
@@ -467,3 +480,96 @@ const restaurant = {
 // // 7
 // team1 < team2 && console.log(`${game.team1} is more likely to win.`);
 // team2 < team1 && console.log(`${game.team2} is more likely to win.`);
+
+// CHALLENGE TWO
+// 1
+// FOR OF LOOP
+let goalScorers = [...game.scored];
+let goalEntries = Object.entries(goalScorers);
+
+for (const [i, scorer] of goalEntries) {
+  console.log(`Goal ${Number(i) + 1}: ${scorer}`);
+}
+console.log('');
+
+//OR
+// FOR IN LOOP
+// let goalScorerss = { ...game.scored };
+// for (const x in goalScorerss) {
+//   console.log(`Goal ${Number(x) + 1}: ${goalScorerss[x]}`);
+// }
+
+// 2
+let odds = Object.values(game.odds);
+let sum = 0;
+let average = 0;
+for (const odd of odds) {
+  sum += odd;
+  average = sum / odds.length;
+}
+console.log(average);
+console.log('');
+
+// 3
+const {
+  team1,
+  team2,
+  odds: { team1: t1, x, team2: t2 },
+} = game;
+
+console.log(
+  `${team1}'s odd of vitory: ${t1}. Odds of draw: ${x}. ${team2}'s odd of victory: ${t2}.`
+);
+console.log('');
+
+// BONUS
+let gscorers = { ...game.scored };
+
+const lewa = 0;
+const gnabry = 1;
+const hummels = 3;
+
+const lewaValue = gscorers[lewa];
+const gnabryValue = gscorers[gnabry];
+const hummelsValue = gscorers[hummels];
+
+const lewaCount = Object.values(gscorers).reduce(
+  (accumulator, currentValue) => {
+    if (currentValue === 'Lewandowski') {
+      return accumulator + 1;
+    } else {
+      return accumulator;
+    }
+  },
+  3
+);
+
+const gnabryCount = Object.values(gscorers).reduce(
+  (accumulator, currentValue) => {
+    if (currentValue === 'Gnabry') {
+      return accumulator + 1;
+    } else {
+      return accumulator;
+    }
+  },
+  0
+);
+
+const hummelsCount = Object.values(gscorers).reduce(
+  (accumulator, currentValue) => {
+    if (currentValue === 'Hummels') {
+      return accumulator + 1;
+    } else {
+      return accumulator;
+    }
+  },
+  0
+);
+
+const scorers = {
+  [gnabryValue]: gnabryCount,
+  [hummelsValue]: hummelsCount,
+  [lewaValue]: lewaCount,
+};
+
+console.log(scorers);

@@ -94,14 +94,14 @@ const restaurant = {
 // console.log(restaurant.openingHours.mon.open);
 
 //////////////////////////////////////// OPTIONAL CHAINING (returns undefined if value on object does not exist instead of an error)
-// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours.sat?.close);
 // console.log(restaurant.openingHours?.mon?.open);
 
 // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 // for (const day of days) {
 //   const open = restaurant.openingHours[day]?.open ?? 'closed';
 //   console.log(`On ${day}, we open by ${open}`);
-// };
+// }
 
 // OPTIONAL CHAINING with methods
 // console.log(restaurant.order?.(0, 2) ?? 'Method does not exist.');
@@ -118,11 +118,16 @@ const restaurant = {
 //   },
 //   {
 //     name: 'Kirke',
+//     email: 'hello@kirke.com',
 //   },
 // ];
 
 // console.log(users?.[4]?.name ?? 'Users array or index empty.');
 // console.log(users[0]?.name ?? 'Users array index empty.');
+
+// for (const { name, email } of users) {
+//   console.log(`Name is ${name}, and email is ${email}`);
+// }
 
 /////////////////////////// ES6 FOR OF LOOP
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -222,7 +227,8 @@ const restaurant = {
 // console.log(o, c);
 // console.log(openingHours.fri);
 
-// const arr = [1, 2, 5];
+const arr = [1, 2, 5];
+console.log(...arr);
 // const a = arr[0];
 // const b = arr[1];
 // const c = arr[2];
@@ -683,7 +689,7 @@ const question = new Map([
   [true, 'Correct 🎉'],
   [false, 'Try again!'],
 ]);
-console.log(question);
+// console.log(question);
 
 // Converting object to maps
 // console.log(Object.entries(openingHours));
@@ -693,19 +699,19 @@ console.log(question);
 // Quiz app
 // alert(question.get('question'));
 
-console.log(question.get('question'));
+// console.log(question.get('question'));
 
-for (const [key, value] of question) {
-  if (typeof key === 'number') {
-    console.log(`Answer ${key}: ${value}`);
-  }
-}
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
+// }
 
 // const answer = Number(prompt('Your answer'));
-const answer = 3;
-console.log(answer);
+// const answer = 3;
+// console.log(answer);
 
-console.log(question.get(question.get('Correct') === answer));
+// console.log(question.get(question.get('Correct') === answer));
 
 // if (answer === question.get('Correct')) {
 //   console.log(question.get(true));

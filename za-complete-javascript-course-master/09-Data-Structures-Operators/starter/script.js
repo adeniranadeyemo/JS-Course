@@ -47,7 +47,12 @@ const restaurant = {
     );
   },
 
-  orderDeliveryTwo({ mainIndex, starterIndex, address, time }) {
+  orderDeliveryTwo({
+    mainIndex,
+    starterIndex,
+    address,
+    time
+  }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
     );
@@ -227,8 +232,8 @@ const restaurant = {
 // console.log(o, c);
 // console.log(openingHours.fri);
 
-const arr = [1, 2, 5];
-console.log(...arr);
+// const arr = [1, 2, 5];
+// console.log(...arr);
 // const a = arr[0];
 // const b = arr[1];
 // const c = arr[2];
@@ -618,6 +623,8 @@ console.log(...arr);
 // console.log(ordersSet.has('Spaghetti'));
 
 // ordersSet.add('Garlic Bread');
+// console.log(ordersSet);
+
 // ordersSet.add('Garlic Bread');
 // ordersSet.add('Porridge');
 
@@ -629,13 +636,14 @@ console.log(...arr);
 //   console.log(order);
 // }
 
-//Example
+// Example;
 // const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// console.log(staff);
 
-// const staffUnique = [...new Set(staff)];
+// const staffUnique = new Set(staff);
 // console.log(staffUnique);
 
-// console.log(new Set(staff).size);
+// console.log(staffUnique.size);
 
 ////////////////////////////////////////////////////////
 // MAPS
@@ -645,7 +653,7 @@ console.log(...arr);
 // rest.set(2, 'Lisbon, Portugal');
 // console.log(rest);
 // console.log(rest.set(3, 'Ibadan, Nigeria'));
-
+//
 // rest
 //   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
 //   .set('open', 11)
@@ -653,25 +661,26 @@ console.log(...arr);
 //   .set(true, 'We are open :D')
 //   .set(false, 'We are closed :(');
 // console.log(rest);
-
+//
 // console.log(rest.get('name'));
 // console.log(rest.get(true));
 // console.log(rest.get(1));
-
-// const time = 24;
+//
+// const time = 13;
 // console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
-
+//
 // console.log(rest.has('categories'));
 // console.log(rest.has('latitude'));
 // rest.delete(2);
-
+//
 // rest.set([1, 2], 'Test');
-
+//
 // const arr = [3, 4];
 // rest.set(arr, 'Quest');
-
+//
 // console.log(rest.get([1, 2]));
 // console.log(rest.get(arr));
+// console.log(rest);
 
 // rest.set(document.querySelector('h1'), 'heading');
 // console.log(rest);
@@ -680,15 +689,15 @@ console.log(...arr);
 // console.log(rest);
 
 ////////
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['Correct', 3],
-  [true, 'Correct 🎉'],
-  [false, 'Try again!'],
-]);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['Correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!'],
+// ]);
 // console.log(question);
 
 // Converting object to maps
@@ -710,8 +719,16 @@ const question = new Map([
 // const answer = Number(prompt('Your answer'));
 // const answer = 3;
 // console.log(answer);
-
+//
 // console.log(question.get(question.get('Correct') === answer));
+
+// OR
+
+// answer === question.get('Correct') ?
+//   console.log(question.get(true)) :
+//   console.log(question.get(false));
+
+// OR
 
 // if (answer === question.get('Correct')) {
 //   console.log(question.get(true));
@@ -723,3 +740,34 @@ const question = new Map([
 // console.log(...question);
 // console.log([...question.keys()]);
 // console.log([...question.values()]);
+
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// 1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2
+console.log(gameEvents.delete(64));
+console.log(gameEvents);
+
+// 3
+console.log(`An event happens every ${90/gameEvents.size} minutes`);
+
+// 4
+for (const [key, value] of gameEvents) {
+  key < 45 ? console.log(`[FIRST HALF] ${key}: ${value}`) : console.log(`[SECOND HALF] ${key} : ${value}`);
+}

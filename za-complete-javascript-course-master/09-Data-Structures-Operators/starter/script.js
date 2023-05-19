@@ -761,13 +761,21 @@ const events = [...new Set(gameEvents.values())];
 console.log(events);
 
 // 2
-console.log(gameEvents.delete(64));
+gameEvents.delete(64);
 console.log(gameEvents);
 
 // 3
-console.log(`An event happens every ${90/gameEvents.size} minutes`);
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(`An event happened, on average, every ${time/gameEvents.size} minutes.`);
+// console.log(`An event happened, on average, every ${90/gameEvents.size} minutes.`);
 
 // 4
-for (const [key, value] of gameEvents) {
-  key < 45 ? console.log(`[FIRST HALF] ${key}: ${value}`) : console.log(`[SECOND HALF] ${key} : ${value}`);
+// for (const [min, eventt] of gameEvents) {
+//   min <= 45 ? console.log(`[FIRST HALF] ${min}: ${eventt}`) : console.log(`[SECOND HALF] ${key} : ${eventt}`);
+// }
+// OR
+for (const [min, eventt] of gameEvents) {
+  let half = min <= 45 ? `FIRST` : `SECOND`;
+  console.log(`[${half} HALF] ${min} : ${eventt}.`);
 }

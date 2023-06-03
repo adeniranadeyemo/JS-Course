@@ -47,12 +47,7 @@ const restaurant = {
     );
   },
 
-  orderDeliveryTwo({
-    mainIndex,
-    starterIndex,
-    address,
-    time
-  }) {
+  orderDeliveryTwo({ mainIndex, starterIndex, address, time }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
     );
@@ -70,7 +65,6 @@ const restaurant = {
     // );
   },
 };
-
 
 ////////////////////////////////////////// Working with strings
 // const airline = 'TAP Air Portugal';
@@ -192,7 +186,6 @@ const restaurant = {
 // const newName = ['Mr.', firstname, lastname.toUpperCase()].join(' ');
 // console.log(newName);
 
-
 // const passenger = 'jessica ann smith davies'
 
 // const capitalizeName = function(name) {
@@ -209,7 +202,6 @@ const restaurant = {
 //
 // capitalizeName(passenger);
 // capitalizeName('adeniran adeyemo');
-
 
 // Padding a string
 // const message = 'Go to gate 20!';
@@ -230,14 +222,46 @@ const restaurant = {
 // const message2 = 'Bad weather... All departures delayed! ';
 // console.log(message2.repeat(5));
 
-const planesInLine = function(n) {
-  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}.`);
-}
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}.`);
+// };
 
-planesInLine(5);
-planesInLine(3);
-planesInLine(12);
+// planesInLine(5);
+// planesInLine(3);
+// planesInLine(12);
 
+//////////////////////////////////////////////
+// CHALLENGE
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const text = document.querySelector('textarea');
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', function () {
+  const textarea = text.value;
+  const words = textarea.toLowerCase().split(/\s+/);
+  let upperCased = [];
+  let sum = '';
+
+  console.log(words);
+
+  for (const word of words) {
+    const noUnderScore = word.split('_');
+    console.log(noUnderScore);
+
+    let firstStr = noUnderScore[0];
+    let secStr = noUnderScore[1];
+    let upperSecStr = secStr[0].toUpperCase() + secStr.slice(1);
+
+    upperCased.push(firstStr + upperSecStr);
+  }
+
+  for (const y of upperCased) {
+    sum += '✅';
+    console.log(y + `      ${sum}`);
+  }
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PROPERTY NAMES
@@ -909,7 +933,6 @@ planesInLine(12);
 // console.log([...question.keys()]);
 // console.log([...question.values()]);
 
-
 // const gameEvents = new Map([
 //   [17, '⚽️ GOAL'],
 //   [36, '🔁 Substitution'],
@@ -935,8 +958,12 @@ planesInLine(12);
 // 3
 // const time = [...gameEvents.keys()].pop();
 // console.log(time);
-// console.log(`An event happened, on average, every ${time/gameEvents.size} minutes.`);
-// console.log(`An event happened, on average, every ${90/gameEvents.size} minutes.`);
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes.`
+// );
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes.`
+// );
 
 // 4
 // for (const [min, eventt] of gameEvents) {

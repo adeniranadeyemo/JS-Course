@@ -244,24 +244,33 @@ btn.addEventListener('click', function () {
   let upperCased = [];
   let sum = '';
 
-  console.log(words);
+  // console.log(words);
 
   for (const word of words) {
     const noUnderScore = word.split('_');
-    console.log(noUnderScore);
 
-    let firstStr = noUnderScore[0];
-    let secStr = noUnderScore[1];
-    let upperSecStr = secStr[0].toUpperCase() + secStr.slice(1);
+    const [first, second] = noUnderScore;
+    let final = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
 
-    upperCased.push(firstStr + upperSecStr);
-  }
-
-  for (const y of upperCased) {
     sum += '✅';
-    console.log(y + `      ${sum}`);
+    console.log(final.padEnd(20) + sum);
   }
+
+  // for (const y of upperCased) {
+  //   console.log(y.padEnd(20) + `${sum}`);
+  // }
 });
+
+// OR
+
+// btn.addEventListener('click', function() {
+//   const textarea = text.value;
+//   const rows = textarea.split('\n');
+
+//   for (const row of rows) {
+//     const []
+//   }
+// })
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // PROPERTY NAMES

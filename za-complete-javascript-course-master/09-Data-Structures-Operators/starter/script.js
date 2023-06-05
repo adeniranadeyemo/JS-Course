@@ -4,6 +4,22 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+// SOLUTION
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '⛔' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${getCode(from)} to ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(45);
+  console.log(output);
+}
+
 // Data needed for first part of the section
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
@@ -230,36 +246,29 @@ const restaurant = {
 // planesInLine(3);
 // planesInLine(12);
 
-//////////////////////////////////////////////
-// CHALLENGE
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// STRING METHODS CHALLENGE
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
 
-const text = document.querySelector('textarea');
-const btn = document.querySelector('button');
+// const text = document.querySelector('textarea');
+// const btn = document.querySelector('button');
 
-btn.addEventListener('click', function () {
-  const textarea = text.value;
-  const words = textarea.toLowerCase().split(/\s+/);
-  let upperCased = [];
-  let sum = '';
+// btn.addEventListener('click', function () {
+//   const textarea = text.value;
+//   const words = textarea.toLowerCase().split(/\s+/);
+//   let sum = '';
 
-  // console.log(words);
+//   for (const word of words) {
+//     const noUnderScore = word.split('_');
 
-  for (const word of words) {
-    const noUnderScore = word.split('_');
+//     const [first, second] = noUnderScore;
+//     let final = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
 
-    const [first, second] = noUnderScore;
-    let final = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
-
-    sum += '✅';
-    console.log(final.padEnd(20) + sum);
-  }
-
-  // for (const y of upperCased) {
-  //   console.log(y.padEnd(20) + `${sum}`);
-  // }
-});
+//     sum += '✅';
+//     console.log(final.padEnd(20) + sum);
+//   }
+// });
 
 // OR
 

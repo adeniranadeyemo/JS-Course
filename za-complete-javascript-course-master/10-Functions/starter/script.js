@@ -124,3 +124,51 @@
 // const greetAgAg = greeting => name => console.log(`${greeting} ${name}`);
 
 // greetAgAg('Hi')('Warrior');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}.`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Adeniran Adeyemo');
+lufthansa.book(634, 'John Smith');
+console.log(lufthansa.bookings);
+
+const book = lufthansa.book;
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+// Call Method
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 12, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 30, 'Bruce Wayne');
+// book.call(swiss, 204, 'Clark Kent');
+console.log(swiss);
+
+// Apply method
+const flightData = [124, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);

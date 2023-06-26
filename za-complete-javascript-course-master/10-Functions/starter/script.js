@@ -125,50 +125,156 @@
 
 // greetAgAg('Hi')('Warrior');
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}.`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}.`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-lufthansa.book(239, 'Adeniran Adeyemo');
-lufthansa.book(634, 'John Smith');
-console.log(lufthansa.bookings);
+// lufthansa.book(239, 'Adeniran Adeyemo');
+// lufthansa.book(634, 'John Smith');
+// console.log(lufthansa.bookings);
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-};
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
 
 // Call Method
-book.call(eurowings, 23, 'Sarah Williams');
-console.log(eurowings);
+// book.call(eurowings, 23, 'Sarah Williams');
+// console.log(eurowings);
 
-book.call(lufthansa, 12, 'Mary Cooper');
-console.log(lufthansa);
+// book.call(lufthansa, 12, 'Mary Cooper');
+// console.log(lufthansa);
 
-const swiss = {
-  airline: 'Swiss Air Lines',
-  iataCode: 'LX',
-  bookings: [],
-};
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// };
 
-book.call(swiss, 30, 'Bruce Wayne');
+// book.call(swiss, 30, 'Bruce Wayne');
 // book.call(swiss, 204, 'Clark Kent');
-console.log(swiss);
+// console.log(swiss);
 
 // Apply method
-const flightData = [124, 'George Cooper'];
-book.apply(swiss, flightData);
-console.log(swiss);
+// const flightData = [124, 'George Cooper'];
+// book.apply(swiss, flightData);
+// console.log(swiss);
 
-book.call(swiss, ...flightData);
+// book.call(swiss, ...flightData);
+
+// Bind method
+// book.call(eurowings, 23, 'Sarah Williams');
+
+// const bookEW = book.bind(eurowings);
+// const bookLH = book.bind(lufthansa);
+// const bookLX = book.bind(swiss);
+
+// bookEW(23, 'Steve Rogers');
+// bookLX(44, 'Natasha Romanov');
+
+// const bookEW25 = book.bind(eurowings, 25);
+// bookEW25('Barry Allen');
+// bookEW25('Tony Stark');
+
+// console.log(eurowings);
+// console.log(swiss);
+
+// Bind with event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(this.planes);
+// };
+// lufthansa.buyPlane();
+
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// const addVAT = addTax.bind(null, 0.23);
+
+// console.log(addVAT(100));
+// console.log(addVAT(50));
+
+// const addTax = (rate, value) => value + value * rate;
+
+// const addVAT = function (rate, value, fn) {
+//   console.log(fn(rate, value));
+// };
+
+// addVAT(0, 200, addTax);
+// addVAT(0.2, 400, addTax);
+
+// const addTaxRate = function (rate) {
+//   return function (value) {
+//     return value + value * rate;
+//   };
+// };
+
+// const addVAT2 = addTaxRate(0.23);
+// console.log(addVAT2(100));
+// console.log(addVAT2(50));
+
+/////////////////////////////////////////////////////////////////////////// CHALLENGE
+// MY SOLUTION
+const ansPoll = document.querySelector('.poll');
+
+const poll = {
+  question: 'What is your favourite progamming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  answers: new Array(4).fill(0),
+};
+
+const newAnswer = function () {
+  poll.registerNewAnswer = prompt(
+    `${poll.question} \n ${poll.options.join('\n')}`
+  );
+
+  for (let x = 0; x < poll.answers.length; x++) {
+    const newAnswerIndex = x;
+
+    if (
+      Number(poll.registerNewAnswer) === newAnswerIndex &&
+      Number(poll.registerNewAnswer) < poll.answers.length &&
+      poll.registerNewAnswer
+    ) {
+      poll.answers[x]++;
+      // console.log(poll.answers);
+      // console.log(poll);
+    }
+  }
+  if (
+    Number(poll.registerNewAnswer) >= poll.answers.length ||
+    isNaN(poll.registerNewAnswer) ||
+    !poll.registerNewAnswer
+  ) {
+    alert('Option invalid! Kindly reselect.');
+    console.log('\nInvalid Option! Poll remains the same as last!');
+  }
+
+  poll.displayResults = function (...type) {
+    return `\nPoll results are ${type}.`;
+  };
+  console.log(poll.displayResults(poll.answers.join(', ')));
+};
+
+ansPoll.addEventListener('click', newAnswer);
+
+//////////////////////////////////////////////////////////////////////// JONAS' SOLUTION

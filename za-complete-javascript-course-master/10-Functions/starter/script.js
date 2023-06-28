@@ -236,45 +236,120 @@
 // MY SOLUTION
 const ansPoll = document.querySelector('.poll');
 
-const poll = {
-  question: 'What is your favourite progamming language?',
-  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
-  answers: new Array(4).fill(0),
-};
+// const poll = {
+//   question: 'What is your favourite progamming language?',
+//   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+//   answers: new Array(4).fill(0),
+// };
 
-const newAnswer = function () {
-  poll.registerNewAnswer = prompt(
-    `${poll.question} \n ${poll.options.join('\n')}`
-  );
+// const newAnswer = function () {
+//   poll.registerNewAnswer = prompt(
+//     `${poll.question} \n ${poll.options.join('\n')}\nWrite option number:`
+//   );
 
-  for (let x = 0; x < poll.answers.length; x++) {
-    const newAnswerIndex = x;
+//   poll.registerNewAnswer < poll.answers.length &&
+//     poll.registerNewAnswer &&
+//     poll.answers[poll.registerNewAnswer]++;
 
-    if (
-      Number(poll.registerNewAnswer) === newAnswerIndex &&
-      Number(poll.registerNewAnswer) < poll.answers.length &&
-      poll.registerNewAnswer
-    ) {
-      poll.answers[x]++;
-      // console.log(poll.answers);
-      // console.log(poll);
-    }
-  }
-  if (
-    Number(poll.registerNewAnswer) >= poll.answers.length ||
-    isNaN(poll.registerNewAnswer) ||
-    !poll.registerNewAnswer
-  ) {
-    alert('Option invalid! Kindly reselect.');
-    console.log('\nInvalid Option! Poll remains the same as last!');
-  }
+//   if (
+//     poll.registerNewAnswer >= poll.answers.length ||
+//     isNaN(poll.registerNewAnswer) ||
+//     !poll.registerNewAnswer
+//   ) {
+//     alert('Option invalid! Kindly reselect.');
+//     console.log('\nInvalid Option! Poll remains the same as last!');
+//   }
 
-  poll.displayResults = function (...type) {
-    return `\nPoll results are ${type}.`;
-  };
-  console.log(poll.displayResults(poll.answers.join(', ')));
-};
+//   poll.displayResults();
+//   poll.displayResults('string');
+// };
 
-ansPoll.addEventListener('click', newAnswer);
+// poll.displayResults = function (type = 'array') {
+//   if (type === 'array') {
+//     console.log(poll.answers);
+//   } else if (type === 'string') {
+//     console.log(`Poll results are ${this.answers.join(', ')}.`);
+//   }
+// };
+//   poll.displayResults = function (...type) {
+//     return `\nPoll results are ${type}.`;
+//   };
+//   console.log(poll.displayResults(poll.answers.join(', ')));
+
+// const testDisplayResults = poll.displayResults.bind();
+// console.log(testDisplayResults([1, 5, 3, 9, 6, 1].join(', ')));
+// console.log(testDisplayResults([5, 3, 1].join(', ')));
+// };
+
+// ansPoll.addEventListener('click', newAnswer);
 
 //////////////////////////////////////////////////////////////////////// JONAS' SOLUTION
+// const poll = {
+//   question: 'What is your favourite progamming language?',
+//   options: ['1: JavaScript', '2: Python', '3: Rust', '4: C++'],
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     //Get answer
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join('\n')}\nWrite option number`
+//       )
+//     );
+//     console.log(answer);
+
+//     //Register answer
+//     typeof answer === 'number' &&
+//       answer !== 0 &&
+//       answer < this.answers.length + 1 &&
+//       this.answers[answer - 1]++;
+
+//     this.displayResults();
+//     this.displayResults('string');
+//   },
+//   displayResults(type = 'array') {
+//     if (type === 'array') {
+//       console.log(this.answers);
+//     } else if (type === 'string') {
+//       console.log(`Poll results are ${this.answers.join(', ')}.`);
+//     }
+//   },
+// };
+
+// ansPoll.addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [5, 2, 3] });
+
+// Immediately Invoked Function Expressions [IIFE]
+// Used when a function is needed to be called only once.
+
+// const runOnce = function () {
+//   console.log('This will never run again');
+// };
+// runOnce();
+
+//IIFE
+// (function () {
+//   console.log('This will never run again');
+// })();
+
+// (() => console.log('This will ALSO never run again'))();
+
+// CLOSURE
+// A function always has access to the variable environment of the execution
+// context in which it was created
+let passengerCount = 10;
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();

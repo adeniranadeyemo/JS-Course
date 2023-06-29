@@ -335,10 +335,14 @@ const ansPoll = document.querySelector('.poll');
 
 // (() => console.log('This will ALSO never run again'))();
 
-// CLOSURE
-// A function always has access to the variable environment of the execution
-// context in which it was created
-let passengerCount = 10;
+// CLOSURE - The closed-over variable environment of the execution context in
+// which a function was created, even after that execution context is gone;
+
+// A function always has access to the varaibles in the variable environment
+// of the execution context in which it was created; The function keeps a
+// reference to its outer scope, which preserves the scope chain throughout time
+
+// let passengerCount = 10;
 
 const secureBooking = function () {
   let passengerCount = 0;
@@ -353,3 +357,5 @@ const booker = secureBooking();
 booker();
 booker();
 booker();
+
+console.dir(booker);

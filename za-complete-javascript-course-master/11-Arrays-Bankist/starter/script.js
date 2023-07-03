@@ -71,6 +71,70 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// let array = ['a', 'b', 'c', 'd', 'e'];
+
+// SLICE
+// console.log(array.slice(2));
+// console.log(array.slice(2, 4));
+// console.log(array.slice(-1));
+// console.log(array.slice(-2));
+// console.log(array.slice(1, -2));
+// console.log(array.slice());
+// console.log([...array]);
+
+// SPLICE - Mutates original array
+// console.log(array.splice(2));
+// array.splice(-1);
+// console.log(array);
+// array.splice(1, 2);
+// console.log(array);
+
+// REVERSE - Mutates original array.
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse());
+// console.log(arr2);
+
+// CONCAT - Doesn't mutate the original array;
+// const letters = array.concat(arr2);
+// console.log([...array, ...arr2]);
+// console.log(letters);
+// console.log(array);
+
+// JOIN
+// console.log(letters.join(', '));
+
+// AT
+// const arr = [23, 11, 44];
+// console.log(arr.at(0));
+
+// Typically used to get the last element of an array
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+
+// New method of getting the last element
+// console.log(arr.at(-1));
+// console.log('Niran'.at(-1));
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements)
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: You deposited $${movement}.`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew $${Math.abs(movement)}.`);
+  }
+}
+
+console.log(' FOR EACH ');
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited $${mov}.`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew $${Math.abs(mov)}.`);
+  }
+});

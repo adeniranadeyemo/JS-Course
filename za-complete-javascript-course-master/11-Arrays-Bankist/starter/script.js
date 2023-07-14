@@ -88,22 +88,22 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 // CHALLENGE ////////////////////////////////////
-const dogsJulia = [3, 5, 2, 12, 7];
-const dogsKate = [4, 1, 15, 8, 3];
+// const dogsJulia = [3, 5, 2, 12, 7];
+// const dogsKate = [4, 1, 15, 8, 3];
+
+const dogsJulia = [9, 16, 6, 8, 3];
+const dogsKate = [10, 5, 6, 1, 4];
 
 const checkDogs = function (array1, array2) {
-  let dogsJuliaCopy = [...array1];
-  let array3 = dogsJuliaCopy.slice(1, 3);
+  let dogsJuliaCorrected = [...array1];
+  let array3 = dogsJuliaCorrected.slice(1, 3);
 
   const allDogs = [...array3, ...array2];
-  console.log(allDogs);
 
   allDogs.forEach(function (dog, i) {
     dog >= 3
       ? console.log(`Dog number ${i + 1} is an adult and is ${dog} years old.`)
-      : console.log(
-          `Dog number ${i + 1} is ${dog} years old and still a puppy.`
-        );
+      : console.log(`Dog number ${i + 1} still a puppy.`);
   });
 };
 checkDogs(dogsJulia, dogsKate);

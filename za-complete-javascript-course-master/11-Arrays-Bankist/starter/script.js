@@ -67,6 +67,8 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+//////////////////////
+
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -84,33 +86,50 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-
 displayMovements(account1.movements);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, curr) => acc + curr, 0);
+  labelBalance.textContent = `${balance}EUR`;
+};
+calcDisplayBalance(account1.movements);
+
+const createUsername = accs =>
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name.at(0))
+      .join('');
+  });
+createUsername(accounts);
+console.log(accounts);
 
 // CHALLENGE ////////////////////////////////////
 // const dogsJulia = [3, 5, 2, 12, 7];
 // const dogsKate = [4, 1, 15, 8, 3];
 
-const dogsJulia = [9, 16, 6, 8, 3];
-const dogsKate = [10, 5, 6, 1, 4];
+// const dogsJulia = [9, 16, 6, 8, 3];
+// const dogsKate = [10, 5, 6, 1, 4];
 
-const checkDogs = function (array1, array2) {
-  let dogsJuliaCorrected = [...array1];
-  let array3 = dogsJuliaCorrected.slice(1, 3);
+// const checkDogs = function (array1, array2) {
+//   let dogsJuliaCorrected = [...array1];
+//   let array3 = dogsJuliaCorrected.slice(1, 3);
 
-  const allDogs = [...array3, ...array2];
+//   const allDogs = [...array3, ...array2];
 
-  allDogs.forEach(function (dog, i) {
-    dog >= 3
-      ? console.log(`Dog number ${i + 1} is an adult and is ${dog} years old.`)
-      : console.log(`Dog number ${i + 1} still a puppy.`);
-  });
-};
-checkDogs(dogsJulia, dogsKate);
+//   allDogs.forEach(function (dog, i) {
+//     dog >= 3
+//       ? console.log(`Dog number ${i + 1} is an adult and is ${dog} years old.`)
+//       : console.log(`Dog number ${i + 1} still a puppy.`);
+//   });
+// };
+// checkDogs(dogsJulia, dogsKate);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -149,7 +168,7 @@ checkDogs(dogsJulia, dogsKate);
 
 // AT
 // const arr = [23, 11, 44];
-// console.log(arr.at(0));
+// console.log(arr.at(-1));
 
 // Typically used to get the last element of an array
 // console.log(arr[arr.length - 1]);
@@ -158,8 +177,6 @@ checkDogs(dogsJulia, dogsKate);
 // New method of getting the last element
 // console.log(arr.at(-1));
 // console.log('Niran'.at(-1));
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements)
 // for (const [i, movement] of movements.entries()) {
@@ -189,3 +206,65 @@ checkDogs(dogsJulia, dogsKate);
 // currenciesUnique.forEach(function (value, _, set) {
 //   console.log(`${value}: ${value}`);
 // });
+
+// const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+// const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// OR
+
+// const movementsUSDFor = [];
+// for (const mov of movements) {
+//   movementsUSDFor.push(mov * eurToUsd);
+// }
+// console.log(movementsUSDFor);
+
+// const movementsDesc = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} $${Math.abs(
+//       mov
+//     )}.`
+// );
+
+// console.log(...movementsDesc);
+
+// FILTER
+// const deposits = movements.filter(function (mov, i, arr) {
+//   return mov > 0;
+// });
+// console.log(deposits);
+
+// const depositsFor = [];
+// for (const mov of movements)
+//   if (mov > 0) {
+//     depositsFor.push(mov);
+//   }
+// console.log(depositsFor);
+
+// const withdrawals = movements.filter(mov => mov < 0);
+// console.log(withdrawals);
+
+// console.log(movements);
+
+// const balance = movements.reduce(function (acc, curr, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + curr;
+// }, 0);
+// console.log(balance);
+
+// const balance = movements.reduce((acc, curr) => acc + curr, 0);
+// console.log(balance);
+
+// let balanceFor = 0;
+// for (const [i, mov] of movements.entries()) {
+//   balanceFor += mov;
+//   console.log(`${mov} is at position ${i + 1}`);
+// }
+// console.log(balanceFor);

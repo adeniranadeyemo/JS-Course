@@ -130,27 +130,28 @@ console.log(accounts);
 const dogsAgesOne = [5, 2, 4, 1, 15, 8, 3];
 const dogsAgesTwo = [16, 6, 10, 5, 6, 1, 4];
 
-let average = 0;
-
 const calcAverageHumanAge = function (dogsAges) {
   const humanDogAges = dogsAges.map(dogAge =>
-    dogAge <= 2 ? 2 + dogAge : 16 + dogAge * 4
+    dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4
   );
 
-  const filteredHumanAges = humanDogAges.filter(
-    humanDogAge => humanDogAge >= 18
-  );
+  const filteredAges = humanDogAges.filter(humanDogAge => humanDogAge >= 18);
 
-  const sumFilteredHumanAges = filteredHumanAges.reduce(
-    (acc, curr) => acc + curr,
-    0
-  );
+  const average =
+    filteredAges.reduce((acc, curr) => acc + curr, 0) / filteredAges.length;
 
-  average = sumFilteredHumanAges / dogsAges.length;
+  // const average = filteredAges.reduce(
+  //   (acc, curr, i, arr) => acc + curr / arr.length,
+  //   0
+  // );
+
   return average;
 };
-console.log(calcAverageHumanAge(dogsAgesOne));
-console.log(calcAverageHumanAge(dogsAgesTwo));
+
+const avg1 = calcAverageHumanAge(dogsAgesOne);
+const avg2 = calcAverageHumanAge(dogsAgesTwo);
+
+console.log(avg1, avg2);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

@@ -67,7 +67,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-//////////////////////
+////////////////////////////////////////////////////
 
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
@@ -125,6 +125,32 @@ console.log(accounts);
 //   });
 // };
 // checkDogs(dogsJulia, dogsKate);
+
+// CHALLENGE//////////////////////////////////////
+const dogsAgesOne = [5, 2, 4, 1, 15, 8, 3];
+const dogsAgesTwo = [16, 6, 10, 5, 6, 1, 4];
+
+let average = 0;
+
+const calcAverageHumanAge = function (dogsAges) {
+  const humanDogAges = dogsAges.map(dogAge =>
+    dogAge <= 2 ? 2 + dogAge : 16 + dogAge * 4
+  );
+
+  const filteredHumanAges = humanDogAges.filter(
+    humanDogAge => humanDogAge >= 18
+  );
+
+  const sumFilteredHumanAges = filteredHumanAges.reduce(
+    (acc, curr) => acc + curr,
+    0
+  );
+
+  average = sumFilteredHumanAges / dogsAges.length;
+  return average;
+};
+console.log(calcAverageHumanAge(dogsAgesOne));
+console.log(calcAverageHumanAge(dogsAgesTwo));
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -253,6 +279,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // console.log(movements);
 
+// REDUCE
 // const balance = movements.reduce(function (acc, curr, i, arr) {
 //   console.log(`Iteration ${i}: ${acc}`);
 //   return acc + curr;
@@ -268,3 +295,71 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   console.log(`${mov} is at position ${i + 1}`);
 // }
 // console.log(balanceFor);
+
+// Maximum value with reduce
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+}, movements[0]);
+console.log(max);
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////// PERSONAL CHALLENGE ON MAP callback function, BIND and FOREACH
+// OBSOLETE
+// const passengersNumbs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// const passengersNames = [
+//   'Niran',
+//   'James',
+//   'Tunmise',
+//   'Asiwaju',
+//   'Yori',
+//   'Abha',
+//   'Joko',
+//   'Koko',
+//   'Praise',
+//   'Kem-Kem',
+// ];
+
+// OBSOLETE
+// const numbsAndNames = passengersNumbs.map((number, index) => [
+//   number,
+//   passengersNames[index],
+// ]);
+// console.log(numbsAndNames);
+
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}.`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+
+// const swiss = {
+//   airline: 'Lufthansa',
+//   iataCode: 'SW',
+//   bookings: [],
+// };
+
+// const book = lufthansa.book;
+// const bookLH = book.bind(lufthansa);
+// const bookSW = book.bind(swiss);
+
+// const passengersInfo1 = passengersNames.forEach(function (name, number) {
+//   bookLH(number + 1, name);
+// });
+
+// console.log('');
+
+// const passengersInfo2 = passengersNames.forEach(function (name, number) {
+//   bookSW(number + 1, name);
+// });

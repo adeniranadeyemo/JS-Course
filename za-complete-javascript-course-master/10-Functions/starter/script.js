@@ -39,7 +39,7 @@
 //   flightNum = 'LH484';
 //   passenger.name = 'Mr. ' + passenger.name;
 
-//   if (passenger.passport === 4894340024884844) {
+//   if (passenger.passport === 2847275452340239) {
 //     alert('Check in');
 //   } else {
 //     alert('Wrong passport');

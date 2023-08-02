@@ -41,6 +41,9 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
+// const y = [...currencies];
+// y.forEach(arr => console.log(arr.join(' ')));
+
 // Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
@@ -69,10 +72,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 ////////////////////////////////////////////////////
 
-const displayMovements = function (movements) {
+const displayMovements = function (acc) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  acc.movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -87,9 +90,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, curr) => acc + curr, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, curr) => acc + curr, 0);
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -121,6 +124,17 @@ const createUsername = accs =>
   });
 createUsername(accounts);
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc);
+
+  // Display balance
+  calcDisplayBalance(acc);
+
+  // Display summary
+  calcDisplaySummary(acc);
+};
+
 // Event Handler
 let currentAccount;
 
@@ -144,14 +158,32 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Display movements
-    displayMovements(currentAccount.movements);
+    // Update UI
+    updateUI(currentAccount);
+  }
+});
 
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
 
-    // Display summary
-    calcDisplaySummary(currentAccount);
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
   }
 });
 
@@ -163,10 +195,10 @@ btnLogin.addEventListener('click', function (e) {
 // const dogsKate = [10, 5, 6, 1, 4];
 
 // const checkDogs = function (array1, array2) {
-//   let dogsJuliaCorrected = [...array1];
-//   let array3 = dogsJuliaCorrected.slice(1, 3);
+//   let array3 = [...array1];
+//   let dogsJuliaCorrected = array3.slice(1, 3);
 
-//   const allDogs = [...array3, ...array2];
+//   const allDogs = [...dogsJuliaCorrected, ...array2];
 
 //   allDogs.forEach(function (dog, i) {
 //     dog >= 3
@@ -436,12 +468,12 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const bookLH = book.bind(lufthansa);
 // const bookSW = book.bind(swiss);
 
-// const passengersInfo1 = passengersNames.forEach(function (name, number) {
+// passengersNames.forEach(function (name, number) {
 //   bookLH(number + 1, name);
 // });
 
 // console.log('');
 
-// const passengersInfo2 = passengersNames.forEach(function (name, number) {
+// passengersNames.forEach(function (name, number) {
 //   bookSW(number + 1, name);
 // });

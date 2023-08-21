@@ -72,10 +72,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 ////////////////////////////////////////////////////
 
-const displayMovements = function (acc) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  acc.movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -126,7 +128,7 @@ createUsername(accounts);
 
 const updateUI = function (acc) {
   // Display movements
-  displayMovements(acc);
+  displayMovements(currentAccount.movements);
 
   // Display balance
   calcDisplayBalance(acc);
@@ -225,6 +227,13 @@ btnClose.addEventListener('click', function (e) {
   }
 
   inputClosePin.value = inputCloseUsername.value = '';
+});
+
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 // CHALLENGE ////////////////////////////////////
@@ -460,25 +469,107 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(account);
 
-console.log(movements);
+// console.log(movements);
 
 // Checks only EQUALITY
-console.log(movements.includes(-130));
+// console.log(movements.includes(-130));
 
 // SOME
 // Checks for a CONDITION
-const anyDep = movements.some(mov => mov > 1000);
-console.log(anyDep);
+// const anyDep = movements.some(mov => mov > 1000);
+// console.log(anyDep);
 
 // EVERY
-console.log(movements.every(mov => mov > 0));
-console.log(account4.movements.every(mov => mov > 0));
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
 
 // Separate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
+
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+
+// Flat and Flatmap used for nested arrays
+
+// Flat
+// const overallBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, curr) => acc + curr, 0);
+// console.log(overallBalance);
+
+// Flatmap
+// const overallBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, curr) => acc + curr, 0);
+// console.log(overallBalance2);
+
+// Sort mutates
+// const owners = ['Jonas', 'Zack', 'Adam', 'Martha'];
+// console.log(owners.sort());
+// console.log(owners);
+
+// console.log(movements);
+
+// Return < 0, A, B (Keep order)
+// Return > 0. B, A (Switch order)
+
+// Ascending order
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+// console.log(movements);
+
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// Descending order
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (b > a) return 1;
+// });
+
+// movements.sort((a, b) => b - a);
+// console.log(movements);
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+
+// Empty arrays + fill method
+// const x = new Array(7);
+// console.log(x);
+// console.log(x.map(() => 5));
+
+// x.fill(1, 3, 5);
+// x.fill(1);
+// console.log(x);
+
+// arr.fill(23, 2, 6);
+// console.log(arr);
+
+// Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
+
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z);
+
+// const a = Array.from({ length: 100 }, (_, i) =>
+//   Math.floor(Math.random() * i + 1)
+// );
+// console.log(a);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(movementsUI);
+});
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

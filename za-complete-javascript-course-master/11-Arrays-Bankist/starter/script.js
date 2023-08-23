@@ -128,7 +128,7 @@ createUsername(accounts);
 
 const updateUI = function (acc) {
   // Display movements
-  displayMovements(currentAccount.movements);
+  displayMovements(acc.movements);
 
   // Display balance
   calcDisplayBalance(acc);
@@ -564,12 +564,44 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // );
 // console.log(a);
 
-labelBalance.addEventListener('click', function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll('.movements__value')
-  );
-  console.log(movementsUI);
-});
+// labelBalance.addEventListener('click', function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll('.movements__value'),
+//     el => Number(el.textContent.replace('€', ''))
+//   );
+//   console.log(movementsUI);
+
+//   const movementsUI2 = [...document.querySelectorAll('.movements__value')].map(
+//     el => Number(el.textContent.replace('€', ''))
+//   );
+//   console.log(movementsUI2);
+// });
+
+/////////////////////////////////////////////////////
+// Array Methods Practice
+
+// 1.
+const bankDepositsSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, curr) => sum + curr, 0);
+console.log(bankDepositsSum);
+
+// 2.
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, curr) => (curr >= 1000 ? ++count : count), 0);
+
+console.log(numDeposits1000);
+
+// Prefixed ++ operator
+// let a = 10;
+// console.log(++a);
+// console.log(a);
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

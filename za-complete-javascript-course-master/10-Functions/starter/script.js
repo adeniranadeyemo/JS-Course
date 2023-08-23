@@ -300,7 +300,7 @@ const ansPoll = document.querySelector('.poll');
 //     //Register answer
 //     typeof answer === 'number' &&
 //       answer !== 0 &&
-//       answer < this.answers.length + 1 &&
+//       answer <= this.answers.length &&
 //       this.answers[answer - 1]++;
 
 //     this.displayResults();

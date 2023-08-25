@@ -98,9 +98,10 @@ const calcDisplayBalance = function (acc) {
 };
 
 const calcDisplaySummary = function (acc) {
-  const incomes = acc.movements
-    .filter(mov => mov > 0)
-    .reduce((acc, mov) => acc + mov, 0);
+  const incomes = acc.movements.reduce(
+    (acc, mov) => (mov > 0 ? acc + mov : acc),
+    0
+  );
   labelSumIn.textContent = `${incomes}€`;
 
   const outgoing = acc.movements
@@ -111,8 +112,7 @@ const calcDisplaySummary = function (acc) {
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter(int => int >= 1)
-    .reduce((acc, int) => acc + int, 0);
+    .reduce((acc, int) => (int >= 1 ? acc + int : acc), 0);
   labelSumInterest.textContent = `${interest}€`;
 };
 
@@ -581,27 +581,46 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // Array Methods Practice
 
 // 1.
-const bankDepositsSum = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
-  .reduce((sum, curr) => sum + curr, 0);
-console.log(bankDepositsSum);
+// const bankDepositsSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((sum, curr) => sum + curr, 0);
+// console.log(bankDepositsSum);
+
+// const bankDepositsSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((sum, curr) => (curr > 0 ? sum + curr : sum), 0);
+// console.log(bankDepositsSum);
 
 // 2.
 // const numDeposits1000 = accounts
 //   .flatMap(acc => acc.movements)
 //   .filter(mov => mov >= 1000).length;
 
-const numDeposits1000 = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((count, curr) => (curr >= 1000 ? ++count : count), 0);
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((count, curr) => (curr >= 1000 ? ++count : count), 0);
 
-console.log(numDeposits1000);
+// console.log(numDeposits1000);
 
 // Prefixed ++ operator
 // let a = 10;
 // console.log(++a);
 // console.log(a);
+
+// 3.
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, curr) => {
+      // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+      sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
@@ -660,3 +679,55 @@ console.log(numDeposits1000);
 // passengersNames.forEach(function (name, number) {
 //   bookSW(number + 1, name);
 // });
+
+///////////////////////////////////////////////////////////
+// function calcAge(birthyear, firstName) {
+//   let millenial;
+//   let millStatus;
+//   let str;
+
+//   const age = 2023 - birthyear;
+
+//   function printAge() {
+//     let output = `${firstName}, you are ${age}, born in year ${birthyear}.`;
+//     console.log(output);
+//   }
+//   printAge();
+
+//   function statusAndStr() {
+//     millStatus = `${firstName}'s millenial status: ${millenial}`;
+
+//     str = millenial
+//       ? `You're are a millenial ${firstName}. Nice!`
+//       : `${firstName}, you're not a millenial.`;
+//   }
+
+//   if (birthyear >= 1981 && birthyear <= 1986) {
+//     millenial = true;
+//     statusAndStr();
+
+//     console.log(millStatus);
+
+//     console.log(str);
+//   } else {
+//     millenial = false;
+//     statusAndStr();
+
+//     console.log(millStatus);
+
+//     console.log(str);
+//   }
+
+//   console.log('');
+
+//   return age;
+// }
+
+// // let firstName = 'Lagbaja';
+// calcAge(1981, 'Lagbaja');
+
+// // firstName = 'Steven';
+// calcAge(1983, 'Steven');
+
+// // firstName = 'Adefolarin';
+// calcAge(2011, 'Adefolarin');

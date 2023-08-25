@@ -42,14 +42,14 @@
 // // console.log(calcAge(2000));
 // calcAge(1983);
 
-// const myName = 'Niran';
+// let myName = 'Niran';
+// let age = 2023 - 2000;
+// let job = `Designer/Developer`;
 
 // if (myName === 'Niran') {
-//   const age = 2023 - 2000;
 //   console.log(myName);
 //   console.log(age);
-//   console.log(`Niran is a ${job}`);
-//   const job = `Designer/Developer`;
+//   console.log(`${myName} is a ${job}`);
 // }
 
 // Hoisting with variables

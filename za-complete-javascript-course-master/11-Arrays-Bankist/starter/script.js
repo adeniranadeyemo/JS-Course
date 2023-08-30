@@ -258,8 +258,8 @@ btnSort.addEventListener('click', function (e) {
 // checkDogs(dogsJulia, dogsKate);
 
 // CHALLENGE//////////////////////////////////////
-const dogsAgesOne = [5, 2, 4, 1, 15, 8, 3];
-const dogsAgesTwo = [16, 6, 10, 5, 6, 1, 4];
+// const dogsAgesOne = [5, 2, 4, 1, 15, 8, 3];
+// const dogsAgesTwo = [16, 6, 10, 5, 6, 1, 4];
 
 // const calcAverageHumanAge = function (dogsAges) {
 //   const humanDogAges = dogsAges.map(dogAge =>
@@ -609,36 +609,73 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(a);
 
 // 3.
-const { deposits, withdrawals } = accounts
-  .flatMap(acc => acc.movements)
-  .reduce(
-    (sums, curr) => {
-      // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
-      sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr;
-      return sums;
-    },
-    { deposits: 0, withdrawals: 0 }
-  );
+// const { deposits, withdrawals } = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce(
+//     (sums, curr) => {
+//       // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+//       sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr;
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
 
-console.log(deposits, withdrawals);
+// console.log(deposits, withdrawals);
 
 // 4
-const convertTitleCase = function (title) {
-  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+// const convertTitleCase = function (title) {
+//   const capitalize = str => str[0].toUpperCase() + str.slice(1);
 
-  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+//   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
 
-  const titleCase = title
-    .toLowerCase()
-    .split(' ')
-    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
-    .join(' ');
-  return capitalize(titleCase);
-};
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(' ')
+//     .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+//     .join(' ');
+//   return capitalize(titleCase);
+// };
 
-console.log(convertTitleCase('this is a nice title.'));
-console.log(convertTitleCase('this is a LONG title but not too long.'));
-console.log(convertTitleCase('and here is another title with an EXAMPLE.'));
+// console.log(convertTitleCase('this is a nice title.'));
+// console.log(convertTitleCase('this is a LONG title but not too long.'));
+// console.log(convertTitleCase('and here is another title with an EXAMPLE.'));
+
+/////////////////////////////////////////////
+/// CHALLENGE
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Maltida'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Micheal'] },
+];
+
+let eatingMuchOrLittle;
+
+// 1.
+dogs.forEach(
+  dog => (dog.recommendedFood = Math.floor(dog.weight ** 0.75 * 28))
+);
+console.log(dogs);
+
+// 2.
+const sarahsDog = dogs.find(dog => dog.owners.includes('Sarah'));
+console.log(sarahsDog);
+let sarahsDogTenPercent = sarahsDog.recommendedFood * 0.1;
+
+if (sarahsDog.curFood > sarahsDog.recommendedFood + sarahsDogTenPercent) {
+  console.log(`Sarah's dog eats too much!`);
+} else if (
+  sarahsDog.curFood === sarahsDog.recommendedFood ||
+  sarahsDog.curFood === sarahsDog.recommendedFood + sarahsDogTenPercent ||
+  (sarahsDog.curFood < sarahsDog.recommendedFood + sarahsDogTenPercent &&
+    sarahsDog.curFood > sarahsDog.recommendedFood)
+) {
+  console.log(`Sarah's dog eats just enough.`);
+} else {
+  console.log(`Sarah's dog eats too little!`);
+}
+
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////// PERSONAL CHALLENGE ON MAP callback function, BIND and FOREACH

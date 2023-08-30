@@ -646,7 +646,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const dogs = [
   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
   { weight: 8, curFood: 200, owners: ['Maltida'] },
-  { weight: 13, curFood: 171.9, owners: ['Sarah', 'John'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Micheal'] },
 ];
 
@@ -667,8 +667,9 @@ const sarahsDogEnoughNeg = sarahsDog.recommendedFood - sarahsDogTenPercent;
 
 if (sarahsDog.curFood > sarahsDogEnoughPos) {
   console.log(`Sarah's dog eats too much!`);
+} else if (sarahsDog.curFood === sarahsDog.recommendedFood) {
+  console.log(`Sarah's dog eats just enough.`);
 } else if (
-  sarahsDog.curFood === sarahsDog.recommendedFood ||
   sarahsDog.curFood === sarahsDogEnoughPos ||
   sarahsDog.curFood === sarahsDogEnoughNeg ||
   (sarahsDog.curFood < sarahsDogEnoughPos &&
@@ -676,7 +677,7 @@ if (sarahsDog.curFood > sarahsDogEnoughPos) {
   (sarahsDog.curFood > sarahsDogEnoughNeg &&
     sarahsDog.curFood < sarahsDog.recommendedFood)
 ) {
-  console.log(`Sarah's dog eats just enough.`);
+  console.log(`Sarah's dog eats within the recommended range.`);
 } else {
   console.log(`Sarah's dog eats too little!`);
 }

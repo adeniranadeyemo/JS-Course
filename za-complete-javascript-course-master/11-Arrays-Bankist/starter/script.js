@@ -258,8 +258,8 @@ btnSort.addEventListener('click', function (e) {
 // checkDogs(dogsJulia, dogsKate);
 
 // CHALLENGE//////////////////////////////////////
-// const dogsAgesOne = [5, 2, 4, 1, 15, 8, 3];
-// const dogsAgesTwo = [16, 6, 10, 5, 6, 1, 4];
+const dogsAgesOne = [5, 2, 4, 1, 15, 8, 3];
+const dogsAgesTwo = [16, 6, 10, 5, 6, 1, 4];
 
 // const calcAverageHumanAge = function (dogsAges) {
 //   const humanDogAges = dogsAges.map(dogAge =>
@@ -681,6 +681,18 @@ if (sarahsDog.curFood > sarahsDogEnoughPos) {
 } else {
   console.log(`Sarah's dog eats too little!`);
 }
+
+// 3.
+const ownersEatTooMuch = dogs =>
+  dogs
+    .flatMap(dog =>
+      dog.curFood > dog.recommendedFood + dog.recommendedFood * 0.1
+        ? dog.owners
+        : undefined
+    )
+    .filter(owner => owner);
+
+console.log(ownersEatTooMuch(dogs));
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

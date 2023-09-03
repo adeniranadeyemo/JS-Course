@@ -650,8 +650,6 @@ const dogs = [
   { weight: 32, curFood: 340, owners: ['Micheal'] },
 ];
 
-let eatingMuchOrLittle;
-
 // 1.
 dogs.forEach(
   dog => (dog.recommendedFood = Math.floor(dog.weight ** 0.75 * 28))
@@ -665,45 +663,34 @@ const sarahsDogTenPercent = sarahsDog.recommendedFood * 0.1;
 const sarahsDogMax = sarahsDog.recommendedFood + sarahsDogTenPercent;
 const sarahsDogMin = sarahsDog.recommendedFood - sarahsDogTenPercent;
 
-if (sarahsDog.curFood > sarahsDogMax) {
-  console.log(`Sarah's dog eats too much!`);
+if (sarahsDog.curFood > sarahsDogMax || sarahsDog.curFood < sarahsDogMin) {
+  console.log(
+    `Sarah's dog eats too ${
+      sarahsDog.curFood > sarahsDogMax ? 'much' : 'little'
+    }!`
+  );
 } else if (sarahsDog.curFood === sarahsDog.recommendedFood) {
   console.log(`Sarah's dog eats just enough.`);
-} else if (
-  sarahsDog.curFood === sarahsDogMax ||
-  sarahsDog.curFood === sarahsDogMin ||
-  (sarahsDog.curFood < sarahsDogMax &&
-    sarahsDog.curFood > sarahsDog.recommendedFood) ||
-  (sarahsDog.curFood > sarahsDogMin &&
-    sarahsDog.curFood < sarahsDog.recommendedFood)
-) {
-  console.log(`Sarah's dog eats within the recommended range.`);
 } else {
-  console.log(`Sarah's dog eats too little!`);
+  console.log(`Sarah's dog eats within the recommended range.`);
 }
 
 // 3.
-const ownersEatTooMuch = dogs =>
+const getOwnersByFoodConsumption = (dogs, excess) =>
   dogs
     .flatMap(dog =>
-      dog.curFood > dog.recommendedFood + dog.recommendedFood * 0.1
+      excess
+        ? dog.curFood > dog.recommendedFood + dog.recommendedFood * 0.1
+          ? dog.owners
+          : []
+        : dog.curFood < dog.recommendedFood - dog.recommendedFood * 0.1
         ? dog.owners
-        : undefined
+        : []
     )
     .filter(owner => owner);
 
-console.log(ownersEatTooMuch(dogs));
-
-const ownersEatTooLittle = dogs =>
-  dogs
-    .flatMap(dog =>
-      dog.curFood < dog.recommendedFood - dog.recommendedFood * 0.1
-        ? dog.owners
-        : undefined
-    )
-    .filter(owner => owner);
-
-console.log(ownersEatTooLittle(dogs));
+console.log(getOwnersByFoodConsumption(dogs, true)); // Owners whose dogs eat too much
+console.log(getOwnersByFoodConsumption(dogs, false)); // Owners whose dogs eat too little
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

@@ -662,19 +662,19 @@ console.log(dogs);
 const sarahsDog = dogs.find(dog => dog.owners.includes('Sarah'));
 
 const sarahsDogTenPercent = sarahsDog.recommendedFood * 0.1;
-const sarahsDogEnoughPos = sarahsDog.recommendedFood + sarahsDogTenPercent;
-const sarahsDogEnoughNeg = sarahsDog.recommendedFood - sarahsDogTenPercent;
+const sarahsDogMax = sarahsDog.recommendedFood + sarahsDogTenPercent;
+const sarahsDogMin = sarahsDog.recommendedFood - sarahsDogTenPercent;
 
-if (sarahsDog.curFood > sarahsDogEnoughPos) {
+if (sarahsDog.curFood > sarahsDogMax) {
   console.log(`Sarah's dog eats too much!`);
 } else if (sarahsDog.curFood === sarahsDog.recommendedFood) {
   console.log(`Sarah's dog eats just enough.`);
 } else if (
-  sarahsDog.curFood === sarahsDogEnoughPos ||
-  sarahsDog.curFood === sarahsDogEnoughNeg ||
-  (sarahsDog.curFood < sarahsDogEnoughPos &&
+  sarahsDog.curFood === sarahsDogMax ||
+  sarahsDog.curFood === sarahsDogMin ||
+  (sarahsDog.curFood < sarahsDogMax &&
     sarahsDog.curFood > sarahsDog.recommendedFood) ||
-  (sarahsDog.curFood > sarahsDogEnoughNeg &&
+  (sarahsDog.curFood > sarahsDogMin &&
     sarahsDog.curFood < sarahsDog.recommendedFood)
 ) {
   console.log(`Sarah's dog eats within the recommended range.`);
@@ -693,6 +693,17 @@ const ownersEatTooMuch = dogs =>
     .filter(owner => owner);
 
 console.log(ownersEatTooMuch(dogs));
+
+const ownersEatTooLittle = dogs =>
+  dogs
+    .flatMap(dog =>
+      dog.curFood < dog.recommendedFood - dog.recommendedFood * 0.1
+        ? dog.owners
+        : undefined
+    )
+    .filter(owner => owner);
+
+console.log(ownersEatTooLittle(dogs));
 
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

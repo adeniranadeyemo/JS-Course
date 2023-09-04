@@ -676,22 +676,87 @@ if (sarahsDog.curFood > sarahsDogMax || sarahsDog.curFood < sarahsDogMin) {
 }
 
 // 3.
-const getOwnersByFoodConsumption = (dogs, excess) =>
-  dogs
-    .flatMap(dog =>
-      excess
-        ? dog.curFood > dog.recommendedFood + dog.recommendedFood * 0.1
-          ? dog.owners
-          : []
-        : dog.curFood < dog.recommendedFood - dog.recommendedFood * 0.1
-        ? dog.owners
-        : []
-    )
-    .filter(owner => owner);
+const ownersEatTooMuch = dogs
+  .flatMap(dog =>
+    dog.curFood > dog.recommendedFood + dog.recommendedFood * 0.1
+      ? dog.owners
+      : []
+  )
+  .filter(owner => owner);
 
-console.log(getOwnersByFoodConsumption(dogs, true)); // Owners whose dogs eat too much
-console.log(getOwnersByFoodConsumption(dogs, false)); // Owners whose dogs eat too little
+console.log(ownersEatTooMuch);
 
+const ownersEatTooLittle = dogs
+  .flatMap(dog =>
+    dog.curFood < dog.recommendedFood - dog.recommendedFood * 0.1
+      ? dog.owners
+      : []
+  )
+  .filter(owner => owner);
+
+console.log(ownersEatTooLittle);
+
+// A function that creates either of the arrays above if a condition is true or false
+// const getOwnersByFoodConsumption = (dogs, excess) =>
+//   dogs
+//     .flatMap(dog =>
+//       excess
+//         ? dog.curFood > dog.recommendedFood + dog.recommendedFood * 0.1
+//           ? dog.owners
+//           : []
+//         : dog.curFood < dog.recommendedFood - dog.recommendedFood * 0.1
+//         ? dog.owners
+//         : []
+//     )
+//     .filter(owner => owner);
+
+// console.log(getOwnersByFoodConsumption(dogs, true)); // Owners whose dogs eat too much
+// console.log(getOwnersByFoodConsumption(dogs, false)); // Owners whose dogs eat too little
+
+// 4.
+const tooMuch = `${ownersEatTooMuch.join(' and ')}'s dog eats too much!`;
+console.log(tooMuch);
+
+const tooLittle = `${ownersEatTooLittle.join(' and ')}'s dog eats too little!`;
+console.log(tooLittle);
+
+// 5.
+console.log(dogs.some(dog => dog.curFood === dog.recommendedFood));
+
+// 6.
+console.log(
+  dogs.some(
+    dog =>
+      (dog.curFood <= dog.recommendedFood &&
+        dog.curFood >= dog.recommendedFood * 0.9) ||
+      (dog.curFood >= dog.recommendedFood &&
+        dog.curFood <= dog.recommendedFood * 1.1)
+  )
+);
+
+// console.log(
+//   dogs.some(
+//     dog =>
+//       Math.abs(dog.curFood - dog.recommendedFood) < dog.recommendedFood * 0.1
+//   )
+// );
+
+// 7.
+const okayAmountDogs = dogs
+  .map(dog =>
+    Math.abs(dog.curFood - dog.recommendedFood) <= dog.recommendedFood * 0.1
+      ? dog
+      : undefined
+  )
+  .filter(dog => dog);
+console.log(okayAmountDogs);
+
+// 8.
+const ascDogsCopy = dogs
+  .slice()
+  .sort((a, b) => a.recommendedFood - b.recommendedFood);
+
+console.log(ascDogsCopy);
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////// PERSONAL CHALLENGE ON MAP callback function, BIND and FOREACH
@@ -766,26 +831,20 @@ console.log(getOwnersByFoodConsumption(dogs, false)); // Owners whose dogs eat t
 
 //   function statusAndStr() {
 //     millStatus = `${firstName}'s millenial status: ${millenial}`;
+//     console.log(millStatus);
 
 //     str = millenial
 //       ? `You're are a millenial ${firstName}. Nice!`
 //       : `${firstName}, you're not a millenial.`;
+//     console.log(str);
 //   }
 
 //   if (birthyear >= 1981 && birthyear <= 1986) {
 //     millenial = true;
 //     statusAndStr();
-
-//     console.log(millStatus);
-
-//     console.log(str);
 //   } else {
 //     millenial = false;
 //     statusAndStr();
-
-//     console.log(millStatus);
-
-//     console.log(str);
 //   }
 
 //   console.log('');
@@ -793,11 +852,11 @@ console.log(getOwnersByFoodConsumption(dogs, false)); // Owners whose dogs eat t
 //   return age;
 // }
 
-// // let firstName = 'Lagbaja';
-// calcAge(1981, 'Lagbaja');
+// let firstName = 'Lagbaja';
+// calcAge(1981, firstName);
 
-// // firstName = 'Steven';
-// calcAge(1983, 'Steven');
+// firstName = 'Steven';
+// calcAge(1983, firstName);
 
-// // firstName = 'Adefolarin';
-// calcAge(2011, 'Adefolarin');
+// firstName = 'Adefolarin';
+// calcAge(2011, firstName);

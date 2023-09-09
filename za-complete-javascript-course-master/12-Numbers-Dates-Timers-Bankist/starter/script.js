@@ -351,15 +351,78 @@ btnSort.addEventListener('click', function (e) {
 // console.log(+(2.345).toFixed(2));
 
 // Remainder
-console.log(5 % 2);
-console.log(5 / 2);
+// console.log(5 % 2);
+// console.log(5 / 2);
 
-console.log(8 % 3);
-console.log(8 / 3);
+// console.log(8 % 3);
+// console.log(8 / 3);
 
-console.log(6 % 2);
-console.log(7 % 2);
+// console.log(6 % 2);
+// console.log(7 % 2);
 
-const isEven = n => n % 2 === 0;
-console.log(isEven(8));
-console.log(isEven(23));
+// const isEven = n => n % 2 === 0;
+// console.log(isEven(8));
+// console.log(isEven(23));
+// console.log(isEven(9));
+// console.log(isEven(520));
+
+// labelBalance.addEventListener('click', function () {
+//   [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+//     if (i % 2 === 0) row.style.backgroundColor = 'greenyellow';
+//     if (i % 3 === 0) row.style.backgroundColor = 'lightblue';
+//   });
+// });
+
+//
+// const diameter = 287_460_000_000;
+// console.log(diameter);
+
+// const price = 345_99;
+// console.log(price);
+
+// const transferFee1 = 15_00; // $15 and 00 cents
+// const transferFee2 = 1_500; // $1500
+
+// const PI = 3.14_15;
+// console.log(PI);
+
+// console.log(Number('230_000'));
+// console.log(parseInt('230_000'));
+
+//
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(' ');
+console.log(344959359354200293502509509583849584358494594549);
+console.log(344959359354200293502509509583849584358494594549n);
+console.log(BigInt(344959359354));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(48343943934543953450345803409459430543090943594n * 100000000000n);
+
+// console.log(Math.sqrt(26n));
+
+const huge = 32823829384923893223992392932n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// Exceptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(20n == 20);
+console.log(20n == '20');
+
+console.log(huge + ' is REALLY BIG!!!');
+
+// Division
+console.log(10n / 3n);
+console.log(10 / 3);
+console.log(21n / 3n);
+console.log(22n / 3n);
+console.log(22 / 3);

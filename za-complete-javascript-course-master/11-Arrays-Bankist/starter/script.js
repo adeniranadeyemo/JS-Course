@@ -701,6 +701,13 @@ console.log(ownersEatTooLittle);
 
 // console.log(ownEatTooLittle);
 
+// Genie's optimized code
+// const ownersEatTooLittle = dogs
+//   .filter(({ curFood, recommendedFood }) => curFood < recommendedFood * 0.9)
+//   .flatMap(({ owners }) => owners);
+
+// console.log(ownersEatTooLittle);
+
 // A function that creates either of the arrays above if a condition is true or false
 // const getOwnersByFoodConsumption = (dogs, excess) =>
 //   dogs

@@ -81,7 +81,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementDate = function (date) {
+const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date1 - date2) / (1000 * 60 * 60 * 24));
 
@@ -92,11 +92,20 @@ const formatMovementDate = function (date) {
   if (daysPasssed === 1) return `Yesterday`;
   if (daysPasssed <= 7) return `${daysPasssed} days ago`;
 
-  const day = `${date.getDate()}`.padStart(2, 0);
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
+  // const day = `${date.getDate()}`.padStart(2, 0);
+  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  // const year = date.getFullYear();
 
-  return `${day}/${month}/${year}`;
+  // return `${day}/${month}/${year}`;
+
+  return new Intl.DateTimeFormat(locale).format(date);
+};
+
+const formatCurr = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -110,7 +119,9 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementDate(date);
+    const displayDate = formatMovementDate(date, acc.locale);
+
+    const formatedMov = formatCurr(mov, acc.locale, acc.currency);
 
     const html = `
       <div class="movements__row">
@@ -118,40 +129,42 @@ const displayMovements = function (acc, sort = false) {
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formatedMov}</div>
       </div>
     `;
-
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+
+  const formatedBal = formatCurr(acc.balance, acc.locale, acc.currency);
+
+  labelBalance.textContent = formatedBal;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     // .filter(mov => mov > 0)
     .reduce((acc, mov) => (mov > 0 ? acc + mov : mov), 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+
+  labelSumIn.textContent = formatCurr(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   // .reduce((acc, mov) => (mov < 0 ? acc + mov : mov), 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCurr(Math.abs(out), acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
-      // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCurr(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
@@ -185,6 +198,22 @@ let currentAccount;
 // updateUI(currentAccount);
 // containerApp.style.opacity = 100;
 
+// Experimenting API
+// const now = new Date();
+// const options = {
+//   hour: 'numeric',
+//   minute: 'numeric',
+//   day: 'numeric',
+//   month: 'long',
+//   // month: '2-digit',
+//   // year: 'numeric',
+//   year: '2-digit',
+//   weekday: 'long',
+// };
+
+// const locale = navigator.language;
+// console.log(locale);
+
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -201,17 +230,34 @@ btnLogin.addEventListener('click', function (e) {
     }`;
     containerApp.style.opacity = 100;
 
-    const now = new Date();
-    labelDate.textContent = now;
+    // const now = new Date();
 
     // DD/MM/YY
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    // const day = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const min = `${now.getMinutes()}`.padStart(2, 0);
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
+    const now = new Date();
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      // month: 'long',
+      // month: '2-digit',
+      year: 'numeric',
+      // weekday: 'long',
+    };
+
+    // const locale = navigator.language;
+    // console.log(locale);
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
@@ -254,14 +300,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -516,3 +564,55 @@ btnSort.addEventListener('click', function (e) {
 
 // const daysDiff1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
 // console.log(daysDiff1);
+
+// const num = 374374398484.45;
+
+// const options = {
+//   // style: 'unit',
+//   // style: 'percent',
+//   style: 'currency',
+//   // unit: 'mile-per-hour',
+//   unit: 'celsius',
+//   currency: 'EUR',
+//   // useGrouping: false,
+// };
+
+// console.log('US:', new Intl.NumberFormat('en-US', options).format(num));
+// console.log('Germany:', new Intl.NumberFormat('de-DE', options).format(num));
+// console.log('Syria:', new Intl.NumberFormat('ar-SY', options).format(num));
+// console.log(
+//   `${navigator.language}:`,
+//   new Intl.NumberFormat(navigator.language, options).format(num)
+// );
+
+// setTimeout
+// const ingredients = ['Olives', 'Spinach'];
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) =>
+//     console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕!`),
+//   3000,
+//   ...ingredients
+// );
+// console.log('Waiting...');
+
+// if (ingredients.includes('Pineapple')) clearTimeout(pizzaTimer);
+
+// setInterval
+// const locale = navigator.language;
+
+// setInterval(function () {
+//   const now = new Date();
+//   const options = {
+//     second: 'numeric',
+//     hour: 'numeric',
+//     minute: 'numeric',
+//     day: 'numeric',
+//     month: 'numeric',
+//     // month: 'long',
+//     // month: '2-digit',
+//     year: 'numeric',
+//     // weekday: 'long',
+//   };
+
+//   console.log(new Intl.DateTimeFormat(locale, options).format(now));
+// }, 1000);

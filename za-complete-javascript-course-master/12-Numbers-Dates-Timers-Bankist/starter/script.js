@@ -168,7 +168,7 @@ const calcDisplaySummary = function (acc) {
 };
 
 const createUsernames = function (accs) {
-  accs.forEach(function (acc) {
+  accs.forEach(acc => {
     acc.username = acc.owner
       .toLowerCase()
       .split(' ')

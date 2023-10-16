@@ -355,6 +355,7 @@ h4 {
   grid-template-columns: 7rem 1fr;
   column-gap: 3rem;
   row-gap: 0.5rem;
+  transition: all 1s ease-in;
 }
 
 .operations__header {

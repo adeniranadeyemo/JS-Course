@@ -234,9 +234,9 @@ const loadImg = function (entries, observer) {
 
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
-  threshold: 0.7,
-  // threshold: 0,
-  // rootMargin: '-200px',
+  // threshold: 0.7,
+  threshold: 0,
+  rootMargin: '-200px',
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
@@ -361,8 +361,11 @@ slider();
 // Creating and inserting elements
 // const message = document.createElement('div');
 // message.classList.add('cookie-message');
-// message.innerHTML =
-//   '<p>We use cookies for improved functionality and analytics</p> <button class="btn btn--close-cookie">Got it!</button>';
+// message.innerHTML = `<p>
+//       We use cookies for improved functionality and analytics
+//   </p>
+//   <button class="btn btn--close-cookie">Got it!</button>
+//   `;
 // message.textContent = 'We use cookies for improved functionality and analytics';
 
 // const message2 = document.createElement('div');
@@ -395,6 +398,8 @@ slider();
 // console.log(getComputedStyle(message).height);
 // console.log(getComputedStyle(message).color);
 
+// getComputedStyle(message).height Always returns a string,
+// so remember to convert to Number
 // message.style.height =
 //   Number.parseFloat(getComputedStyle(message).height) + 60 + 'px';
 
@@ -510,4 +515,20 @@ slider();
 // });
 
 //   section1.scrollIntoView({ behavior: 'smooth' });
+// });
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built!', e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('Page fully loaded', e);
+});
+
+// Should only be used to prevent users from leaving a page
+// where data can be lost by accident
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
 // });

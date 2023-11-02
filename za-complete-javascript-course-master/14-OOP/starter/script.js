@@ -446,80 +446,287 @@
 
 /////////////////////////////////////////////////////////////
 // Linking parent to child objects with ES6 Classes.
-class PersonCl {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+
+//   // Methods will be added to the .prototype property
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+
+//   greet() {
+//     console.log(`Hey, ${this.fullName}.`);
+//   }
+
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
+
+//   // set can be used to pass parameters
+//   // to be used in the property.
+//   // set must have a parameter and just one
+//   // Setting a property that already exist for validation
+
+//   set fullName(name) {
+//     // console.log(name);
+//     if (name.includes(' ')) this._fullName = name;
+//     else alert('Given name is not a full name!');
+//   }
+
+//   // get is used without a parameter
+//   // to get a property
+//   get fullName() {
+//     return this._fullName;
+//   }
+
+//   set birthYear(year) {
+//     if (year) this._birthYear = year;
+//     else alert(`No birthyear added!`);
+//   }
+
+//   get birthYear() {
+//     return this._birthYear;
+//   }
+
+//   // Static method
+//   static hey() {
+//     console.log('Hey there 👋🏽');
+//     console.log(this);
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor(fullName, birthYear, course) {
+//     // Always needs to happen first
+//     super(fullName, birthYear);
+//     this.course = course;
+//   }
+
+//   introduce() {
+//     console.log(`My name is ${this.fullName}, and I study ${this.course}.`);
+//   }
+
+//   calcAge() {
+//     console.log(
+//       `I'm ${
+//         2037 - this.birthYear
+//       } years old, but as a student I feel more like ${
+//         2037 - this.birthYear + 10
+//       }.`
+//     );
+//   }
+// }
+
+// const Martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+// console.log(Martha);
+// Martha.introduce();
+// Martha.calcAge();
+
+/////////////////////////////////////////////////////////////
+// Linking parent to child objects with Object.create.
+// const PersonProto = {
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+// };
+
+// const Steven = Object.create(PersonProto);
+
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+
+// StudentProto.introduce = function () {
+//   console.log(`My name is ${this.firstName}, and I study ${this.course}.`);
+// };
+
+// const Jay = Object.create(StudentProto);
+// Jay.init('Jay', 2010, 'Computer Science');
+// // console.log(Jay);
+// Jay.introduce();
+// Jay.calcAge();
+
+/////////////////
+// Encapsulation with fields and methods
+// 1. Pulic fields
+// 2. Private fields
+// 3. Public methods
+// 4. Private methods
+// {There is also the static version}
+
+// class Account {
+//   // 1. Public fields (they are on the instances and not in the prototype)
+//   locale = navigator.language;
+
+//   // 2. Private fields (they are on the instances and not in the prototype)
+//   // They are not accessible outside of the class which
+//   // makes them perfect for data privacy and encapsulation
+//   #movements = [];
+//   #pin;
+
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     // Protected property
+//     this.#pin = pin;
+//     // this._movements = [];
+//     // this.locale = navigator.language;
+
+//     console.log(`Thanks for opening an acount, ${this.owner}.`);
+//   }
+
+//   // 3 Public methods
+//   // Public interface
+//   getMovements() {
+//     return this.#movements;
+//   }
+
+//   deposit(value) {
+//     this.#movements.push(value);
+//     return this;
+//   }
+
+//   withdrawal(value) {
+//     this.deposit(-value);
+//     return this;
+//   }
+
+//   requestLoan(value) {
+//     if (this._approveLoan(value)) {
+//       this.deposit(value);
+//       console.log(`Loan approved.`);
+//       return this;
+//     } else {
+//       console.log(`Loan not approved`);
+//       return this;
+//     }
+
+//     // if (this.#approveLoan(value)) {
+//     //   this.deposit(value);
+//     //   console.log(`Loan approved.`);
+//     // } else {
+//     //   console.log(`Loan not approved`);
+//     // }
+//   }
+
+//   _approveLoan(value) {
+//     return true;
+//     // return false;
+//   }
+
+//   // 4. Private methods - Not fully supported yet
+//   // #approveLoan(value) {
+//   //   return true;
+//   //   // return false;
+//   // }
+
+//   // 5.
+//   static helper() {
+//     console.log(`Helper!!`);
+//   }
+// }
+
+// const acc1 = new Account('Niran', 'USD', 1111);
+// acc1.deposit(300);
+// acc1.withdrawal(200);
+// acc1.requestLoan(1000);
+
+// console.log(acc1.getMovements());
+// console.log(acc1);
+// Account.helper();
+
+// // console.log(acc1.#movements);
+// // console.log(acc1.#pin);
+// // console.log(acc1._approveLoan());
+
+// // Chaining
+// acc1.deposit(300).deposit(500).withdrawal(30).requestLoan(100).withdrawal(100);
+// console.log(acc1.getMovements());
+
+////////////// Challenge 4
+class Car {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
   }
 
-  // Methods will be added to the .prototype property
-  calcAge() {
-    console.log(2037 - this.birthYear);
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed}km/hr.`);
   }
 
-  greet() {
-    console.log(`Hey, ${this.fullName}.`);
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed}km/hr.`);
+    return this;
   }
 
-  get age() {
-    return 2037 - this.birthYear;
+  get speedUS() {
+    console.log(`${this.make} is going at ${this.speed / 1.6}mi/hr`);
   }
 
-  // set can be used to pass parameters
-  // to be used in the property.
-  // set must have a parameter and just one
-  // Setting a property that already exist for validation
-  set fullName(name) {
-    // console.log(name);
-    if (name.includes(' ')) this._fullName = name;
-    else alert('Given name is not a full name!');
-  }
-
-  // get is used without a parameter
-  // to get a property
-  get fullName() {
-    return this._fullName;
-  }
-
-  set birthYear(year) {
-    if (year) this._birthYear = year;
-    else alert(`No birthyear added!`);
-  }
-
-  get birthYear() {
-    return this._birthYear;
-  }
-
-  // Static method
-  static hey() {
-    console.log('Hey there 👋🏽');
-    console.log(this);
+  set speedUS(speed) {
+    return (this.speed = speed * 1.6);
   }
 }
 
-class StudentCl extends PersonCl {
-  constructor(fullName, birthYear, course) {
-    // Always needs to happen first
-    super(fullName, birthYear);
-    this.course = course;
+class EV extends Car {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
   }
 
-  introduce() {
-    console.log(`My name is ${this.fullName}, and I study ${this.course}.`);
-  }
-
-  calcAge() {
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
     console.log(
-      `I'm ${
-        2037 - this.birthYear
-      } years old, but as a student I feel more like ${
-        2037 - this.birthYear + 10
-      }.`
+      `${this.make} goes at ${this.speed}km/hr, with a charge of ${
+        this.#charge
+      }%.`
     );
+    return this;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge += chargeTo;
+    return this;
+  }
+
+  info() {
+    console.log(
+      `${this.make} is going at ${this.speed}km/hr, with a charge of ${
+        this.#charge
+      }%.`
+    );
+    return this;
   }
 }
 
-const Martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
-console.log(Martha);
-Martha.introduce();
-Martha.calcAge();
+const Rivian = new EV('Rivian', 120, 23);
+Rivian.info()
+  .chargeBattery(20)
+  .info()
+  .accelerate()
+  .brake()
+  .chargeBattery(40)
+  .info()
+  .accelerate()
+  .accelerate()
+  .accelerate();
+// console.log(Rivian);
+Rivian.speedUS;
+Rivian.speedUS = 200;
+Rivian.speedUS;
+console.log(Rivian);

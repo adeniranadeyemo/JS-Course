@@ -54,6 +54,73 @@ a:visited {
   margin-bottom: 4rem;
 }
 
+.error-message-container {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+
+  backdrop-filter: blur(0.25rem);
+  background: #02020253;
+  transition: transform 0.5s ease-in-out;
+  display: none;
+}
+
+.error-message {
+  padding: 7rem 6rem;
+  width: 40%;
+  background: #fff;
+  color: var(--color-dark--1);
+  text-align: center;
+  font-size: large;
+  font-weight: 600;
+  border-radius: 10px;
+  color: #dd3f00;
+  /* display: none; */
+}
+
+.flex-label {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.delete-btn-running {
+  /* position: absolute; */
+  /* right: 0; */
+  border: none;
+  padding: 0.9rem;
+  color: #ececec;
+  border-radius: 3px;
+  background: #00c46a;
+  cursor: pointer;
+}
+
+.delete-btn-cycling {
+  border: none;
+  padding: 0.9rem;
+  color: #ececec;
+  border-radius: 3px;
+  background: #ffb545;
+  cursor: pointer;
+}
+
+.error-message-container.active,
+.error-message.active {
+  /* display: block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  animation: fade 0.5s ease-in-out forwards;
+}
+
 .workouts {
   list-style: none;
   height: 77vh;
@@ -71,7 +138,6 @@ a:visited {
   padding: 1.5rem 2.25rem;
   margin-bottom: 1.75rem;
   cursor: pointer;
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.75rem 1.5rem;
@@ -86,7 +152,6 @@ a:visited {
 .workout__title {
   font-size: 1.7rem;
   font-weight: 600;
-  grid-column: 1 / -1;
 }
 
 .workout__details {

@@ -7,7 +7,7 @@ class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _errorMessage = 'We could not find that recipe. Please try another one!';
   _message = '';
-  _newServings;
+  // _newServings;
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(e => window.addEventListener(e, handler));
@@ -18,7 +18,7 @@ class RecipeView extends View {
       const btn = e.target.closest('.btn--tiny');
       if (!btn) return;
 
-      this._newServings = this._data.servings;
+      // this._newServings = this._data.servings;
 
       // const reduceBtn = btn.closest('.btn--decrease-servings');
       // const increaseBtn = btn.closest('.btn--increase-servings');
